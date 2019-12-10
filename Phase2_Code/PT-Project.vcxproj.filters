@@ -196,6 +196,9 @@
     <ClCompile Include="InputDiceValue.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="ToPlayMode.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -317,6 +320,9 @@
       <Filter>GameObjects\Cards</Filter>
     </ClInclude>
     <ClInclude Include="InputDiceValue.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="ToPlayMode.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

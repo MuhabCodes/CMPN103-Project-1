@@ -5,6 +5,7 @@
 #include "AddCardAction.h"
 #include "RollDiceAction.h"
 #include "AddSnakeAction.h"
+#include "ToPlayMode.h"
 
 ///TODO: Add #include for all action types
 
@@ -75,7 +76,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 
 	case TO_PLAY_MODE:
-		pOut->CreatePlayModeToolBar(); // temporary till you made its action class (CHANGE THIS LATTER)
+		pAct = new ToPlayMode(this); // temporary till you made its action class (CHANGE THIS LATTER)
 		break;
 
 	case ROLL_DICE:
