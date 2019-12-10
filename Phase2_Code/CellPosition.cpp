@@ -85,6 +85,11 @@ int CellPosition::GetCellNumFromPosition(const CellPosition & cellPosition)
 
 	///TODO: Implement this function as described in the .h file
 
+	if (cellPosition.VCell() == -1 || cellPosition.HCell() == -1)
+	{
+		return -1;
+	}
+
 	int cPos = NumHorizontalCells * (NumVerticalCells - cellPosition.VCell()) - (NumHorizontalCells - cellPosition.HCell()) + 1;
 	return cPos; // this line should be changed with your implementation
 }
@@ -96,10 +101,19 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 	CellPosition position;
 
 	/// TODO: Implement this function as described in the .h file
+	
+	int posH, posV;
 
-	int posH = (cellNum - 1) % NumHorizontalCells;
-	int posV = NumVerticalCells - ((cellNum + NumHorizontalCells - posH + 1) / NumHorizontalCells);
-
+	if (cellNum > 0 && cellNum <= NumHorizontalCells * NumVerticalCells)
+	{
+		posH = (cellNum - 1) % NumHorizontalCells;
+		posV = NumVerticalCells - ((cellNum + NumHorizontalCells - posH + 1) / NumHorizontalCells);
+	}
+	else
+	{
+		posH = -1;
+		posV = -1;
+	}
 	// Note: use the passed cellNum to set the vCell and hCell of the "position" variable declared inside the function
 	//       I mean: position.SetVCell(...) and position.SetHCell(...) then return it
 
@@ -114,7 +128,7 @@ void CellPosition::AddCellNum (int addedNum)
 	/// TODO: Implement this function as described in the .h file
 
 	int cellNum = GetCellNum() + addedNum;
-	if (cellNum <= NumHorizontalCells * NumVerticalCells + 1)
+	if (cellNum > 0 && cellNum <= NumHorizontalCells * NumVerticalCells)
 	{
 	(*this) = GetCellPositionFromNum(cellNum);
 	}
