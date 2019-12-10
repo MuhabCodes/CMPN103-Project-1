@@ -7,6 +7,7 @@
 #include "AddSnakeAction.h"
 #include "ToPlayModeAction.h"
 #include "ToDesignModeAction.h"
+#include "DeleteGameObjectAction.h"
 
 ///TODO: Add #include for all action types
 
@@ -72,9 +73,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new AddCardAction(this);
 		break;
 
-	case EXIT:
+	case DELETE_GAME_OBJECT:
+		pAct = new DeleteGameObjectAction(this);
 		break;
 
+	case EXIT:
+		break;
 
 	case TO_PLAY_MODE:
 		pAct = new ToPlayModeAction(this);
