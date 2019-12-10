@@ -385,14 +385,14 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-void Output::DrawLadder(const CellPosition & fromCell, const CellPosition & toCell) const
+void Output::DrawLadder(const CellPosition& fromCell, const CellPosition& toCell) const
 {
 
 	///TODO: Validate the Cell Position (Must be Vertical Cells AND toCell below fromCell, otherwise, Do NOT draw)
 
-	if (fromCell.VCell() <= toCell.VCell() || fromCell.HCell() != toCell.HCell())
+	if (fromCell.HCell() != toCell.HCell() || fromCell.VCell() <= toCell.VCell())
 		return;
-	
+
 	// Get the start X and Y coordinates of the upper left corner of the fromCell
 	int cellStartX = GetCellStartX(fromCell);
 	int fromStartY = GetCellStartY(fromCell);
@@ -415,7 +415,7 @@ void Output::DrawLadder(const CellPosition & fromCell, const CellPosition & toCe
 
 	// ---- 2- Draw the Second Vertical Line ---- 
 	int x34 = cellStartX + UI.CellWidth - UI.LadderXOffset; // same x (vertical line)
-	                                                        // the y coordinates is the same as the First Vertical Line
+															// the y coordinates is the same as the First Vertical Line
 
 	///TODO: Set pen color and width using the appropriate variables of UI_Info object (UI)
 
@@ -431,24 +431,23 @@ void Output::DrawLadder(const CellPosition & fromCell, const CellPosition & toCe
 	// Check the drawn ladders in the project document and imitate it
 
 	///TODO: Draw the cross horizontal lines of the ladder using the appropriate coordinates
-
-	for (int i = toCell.VCell(); i < fromCell.VCell(); i++)
+	int n = fromCell.VCell() - toCell.VCell();
+	for (int i = 0; i < n; i++)
 	{
 		pWind->SetPen(UI.LadderColor, UI.LadderlineWidth);
 		pWind->DrawLine(x34, fromStartY - UI.CellHeight * i, x12, fromStartY - UI.CellHeight * i);
 	}
-	
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-void Output::DrawSnake(const CellPosition & fromCell, const CellPosition & toCell) const
+void Output::DrawSnake(const CellPosition& fromCell, const CellPosition& toCell) const
 {
 
 	///TODO: Validate the fromCell and toCell (Must be Vertical and toCell is below fromCell otherwise do NOT draw)
-
-	if (fromCell.VCell() >= toCell.VCell() || fromCell.HCell() != toCell.HCell())
+	if (fromCell.HCell() != toCell.HCell() || fromCell.VCell() >= toCell.VCell())
 		return;
+
 
 	// Get the upper left corner coordinates of the fromCell and toCell
 	int cellStartX = GetCellStartX(fromCell); // same for fromCell and toCell (vertical)
@@ -458,17 +457,17 @@ void Output::DrawSnake(const CellPosition & fromCell, const CellPosition & toCel
 	// ---- 1- Draw Line representing the Snake Body ----
 
 	// Set coordinates of start and end points of the Line of the Snake's Body
-	int x12 = cellStartX + UI.LadderXOffset/2; // same for the start and end point (vertical)
-	int y1 = fromStartY + UI.CellHeight/2;
-	int y2 = toStartY + UI.CellHeight/2;
+	int x12 = cellStartX + UI.LadderXOffset / 2; // same for the start and end point (vertical)
+	int y1 = fromStartY + UI.CellHeight / 2;
+	int y2 = toStartY + UI.CellHeight / 2;
 
 	///TODO: Set pen color and width from the appropriate variables of the UI_Info object (UI)
 
 	pWind->SetPen(UI.SnakeColor, UI.SnakelineWidth);
 
 	///TODO: Draw the Line representing the Snake BOdy
-
 	pWind->DrawLine(x12, y1, x12, y2);
+
 
 	// ---- 2- Draw Polygon with Diamond Shape representing the Snake Head ----
 
@@ -481,23 +480,25 @@ void Output::DrawSnake(const CellPosition & fromCell, const CellPosition & toCel
 
 	///TODO: Set the coordinates of the 4 points of the Polygon
 	//       Check the snakes drawn in the project document and draw it the same way
+	
+	int polygon_Horizontal[4]; 
+	polygon_Horizontal[0] = x12 ; 
+	polygon_Horizontal[1] = x12 - xChange;
+	polygon_Horizontal[2] = x12;
+	polygon_Horizontal[3] = x12 + xChange;
 
-	int polygon_horizontal[4];
-	int polygon_vertical[4];
-	polygon_horizontal[0] = x12;
-	polygon_vertical[0] = y1 - yChange*2;
-	polygon_horizontal[1] = x12 + xChange;
-	polygon_vertical[1] = y1 - yChange;
-	polygon_horizontal[2] = x12;
-	polygon_vertical[2] = y1;
-	polygon_horizontal[3] = x12 - xChange;
-	polygon_vertical[3] = y1 - yChange;
-	int vertex_count = 4;
+	int polygon_Vertical[4];
+	polygon_Vertical[0] = y1 - yChange;
+	polygon_Vertical[1] = y1;
+	polygon_Vertical[2] = y1 + yChange;
+	polygon_Vertical[3] = y1;
+
+	int polygon_vertices = 4;
 
 	///TODO: Draw the Polygon (diamond) representing the Snake's Head
 	//       Check the snakes drawn in the project document and draw it the same way
 
-	pWind->DrawPolygon(polygon_horizontal, polygon_vertical, vertex_count);
+	pWind->DrawPolygon(polygon_Horizontal, polygon_Vertical, polygon_vertices);
 
 }
 
