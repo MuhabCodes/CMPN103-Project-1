@@ -196,7 +196,10 @@
     <ClCompile Include="InputDiceValue.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="ToPlayMode.cpp">
+    <ClCompile Include="ToPlayModeAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="ToDesignModeAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
@@ -322,7 +325,10 @@
     <ClInclude Include="InputDiceValue.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="ToPlayMode.h">
+    <ClInclude Include="ToPlayModeAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="ToDesignModeAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

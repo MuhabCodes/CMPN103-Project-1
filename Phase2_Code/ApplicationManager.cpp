@@ -5,8 +5,8 @@
 #include "AddCardAction.h"
 #include "RollDiceAction.h"
 #include "AddSnakeAction.h"
-#include "ToPlayMode.h"
-#include "ToDesignMode.h"
+#include "ToPlayModeAction.h"
+#include "ToDesignModeAction.h"
 
 ///TODO: Add #include for all action types
 
@@ -77,7 +77,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 
 	case TO_PLAY_MODE:
-		pAct = new ToPlayMode(this);
+		pAct = new ToPlayModeAction(this);
 		break;
 
 	case ROLL_DICE:
@@ -86,7 +86,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case TO_DESIGN_MODE:
-		pAct = new ToDesignMode(this);
+		pAct = new ToDesignModeAction(this);
 		break;
 
 		
