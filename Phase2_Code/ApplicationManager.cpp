@@ -6,6 +6,7 @@
 #include "RollDiceAction.h"
 #include "AddSnakeAction.h"
 #include "ToPlayMode.h"
+#include "ToDesignMode.h"
 
 ///TODO: Add #include for all action types
 
@@ -76,7 +77,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 
 	case TO_PLAY_MODE:
-		pAct = new ToPlayMode(this); // temporary till you made its action class (CHANGE THIS LATTER)
+		pAct = new ToPlayMode(this);
 		break;
 
 	case ROLL_DICE:
@@ -85,7 +86,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case TO_DESIGN_MODE:
-		pOut->CreateDesignModeToolBar(); // temporary till you made its action class (CHANGE THIS LATTER)
+		pAct = new ToDesignMode(this);
 		break;
 
 		
