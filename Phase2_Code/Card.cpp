@@ -7,7 +7,10 @@ Card::Card(const CellPosition & pos) : GameObject(pos) // sets the cell position
 
 void Card::SetCardNumber(int cnum)
 {
-	cardNumber = cnum; // needs validation
+	if (cardNumber > 0 && cardNumber < 15) 
+	{
+		cardNumber = cnum; // needs validation
+		}
 }
 
 int Card::GetCardNumber()
@@ -18,8 +21,9 @@ int Card::GetCardNumber()
 void Card::Draw(Output* pOut) const
 {
 
-	///TODO: call the appropriate Ouput function that draws a cell containing the "cardNumber" in "position"
+	///TODO: call the appropriate Output function that draws a cell containing the "cardNumber" in "position"
 
+	pOut->DrawCell(position, cardNumber);
 
 }
 

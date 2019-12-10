@@ -4,6 +4,7 @@
 #include "AddLadderAction.h"
 #include "AddCardAction.h"
 #include "RollDiceAction.h"
+#include "AddSnakeAction.h"
 
 ///TODO: Add #include for all action types
 
@@ -60,6 +61,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new AddLadderAction(this);
 		break;
 
+	case ADD_SNAKE:
+		pAct = new AddSnakeAction(this);
+		break;
+
 	case ADD_CARD:
 		// create an object of AddCardAction here
 		pAct = new AddCardAction(this);
@@ -67,6 +72,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 	case EXIT:
 		break;
+
 
 	case TO_PLAY_MODE:
 		pOut->CreatePlayModeToolBar(); // temporary till you made its action class (CHANGE THIS LATTER)
