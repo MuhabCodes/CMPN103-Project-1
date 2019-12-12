@@ -5,6 +5,9 @@
 #include "AddCardAction.h"
 #include "RollDiceAction.h"
 #include "AddSnakeAction.h"
+#include "ToPlayModeAction.h"
+#include "ToDesignModeAction.h"
+#include "DeleteGameObjectAction.h"
 
 ///TODO: Add #include for all action types
 
@@ -70,12 +73,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new AddCardAction(this);
 		break;
 
+	case DELETE_GAME_OBJECT:
+		pAct = new DeleteGameObjectAction(this);
+		break;
+
 	case EXIT:
 		break;
 
-
 	case TO_PLAY_MODE:
-		pOut->CreatePlayModeToolBar(); // temporary till you made its action class (CHANGE THIS LATTER)
+		pAct = new ToPlayModeAction(this);
 		break;
 
 	case ROLL_DICE:
@@ -84,7 +90,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case TO_DESIGN_MODE:
-		pOut->CreateDesignModeToolBar(); // temporary till you made its action class (CHANGE THIS LATTER)
+		pAct = new ToDesignModeAction(this);
 		break;
 
 		

@@ -51,6 +51,7 @@ enum PLAY_MODE_ITEMS // The items of the Play Mode (you should add more items)
 
 	///TODO: Add more items names here
 
+	ITM_EXIT_PLAY,
 	ITM_INPUT_DICE_VALUE,
 	ITM_START_NEW_GAME,
 

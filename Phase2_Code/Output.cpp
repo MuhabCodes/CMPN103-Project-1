@@ -241,6 +241,7 @@ void Output::CreatePlayModeToolBar() const
 
 	///TODO: Prepare images for each menu item and add it to the list
 
+	MenuItemImages[ITM_EXIT_PLAY] = "images\\Menu_Exit.jpg";
 	MenuItemImages[ITM_INPUT_DICE_VALUE] = "images\\Menu_InputDiceValue.jpg";
 	MenuItemImages[ITM_START_NEW_GAME] = "images\\Menu_StartNewGame.jpg";
 
@@ -268,6 +269,7 @@ void Output::PrintPlayersInfo(string info)
 {
 	///TODO: Clear what was written on the toolbar
 	ClearToolBar();
+	CreatePlayModeToolBar();
 	// Set the pen and font before drawing the string on the window
 	pWind->SetPen(UI.PlayerInfoColor); 
 	pWind->SetFont(20, BOLD , BY_NAME, "Verdana");   
@@ -321,7 +323,7 @@ void Output::DrawCell(const CellPosition & cellPos, int cardNum) const
 	///TODO: Get the Width and Height of the Cell Number if written using the current font 
 	//       (Use GetIntegerSize() window function) and set the "w" and "h" variables with its width and height
 
-	pWind->GetIntegerSize(w, h, cardNum);
+	pWind->GetIntegerSize(w, h, cellNum);
 
 	// Calculate X & Y coordinate of the start point of writing the card number (upper left point of the cell num)
 	int x = cellStartX + (UI.CellWidth - w - 1);   // space 1 from the end of the cell width
@@ -331,7 +333,7 @@ void Output::DrawCell(const CellPosition & cellPos, int cardNum) const
 	
 	///TODO: Draw the cell number in the x and y location
 	
-	pWind->DrawInteger(x, y, cellPos.GetCellNum());
+	pWind->DrawInteger(x, y, cellNum);
 
 	// ----- 3- Draw card number (if any) -----
 	if (cardNum != -1) // Note: cardNum -1 means no card
@@ -345,7 +347,7 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 
 	///TODO: Validate the playerNum, if not valid return
 	
-	if (playerNum < 0 && playerNum >= 4)
+	if (playerNum < 0 || playerNum >= MaxPlayerCount)
 		return;
 
 	// Get the X & Y coordinates of the start point of the cell (its upper left corner)
@@ -377,6 +379,7 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 	///TODO: Draw the player circle in center(x,y) and filled with the playerColor passed to the function
 
 	pWind->SetBrush(playerColor);
+	pWind->SetPen(playerColor);
 	pWind->DrawCircle(x, y, radius);
 	
 }

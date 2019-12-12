@@ -196,6 +196,15 @@
     <ClCompile Include="InputDiceValue.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="ToPlayModeAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="ToDesignModeAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="DeleteGameObjectAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -317,6 +326,15 @@
       <Filter>GameObjects\Cards</Filter>
     </ClInclude>
     <ClInclude Include="InputDiceValue.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="ToPlayModeAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="ToDesignModeAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteGameObjectAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

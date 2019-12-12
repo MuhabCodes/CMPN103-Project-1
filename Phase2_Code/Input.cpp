@@ -20,7 +20,7 @@ void Input::GetPointClicked(int &x, int &y) const
 
 ////////////////////////////////////////////////////////////////////////////////////////// 
 
-string Input::GetSrting(Output *pO) const 
+string Input::GetString(Output *pO) const 
 {
 	string Label;
 	char Key;
@@ -55,7 +55,33 @@ int Input::GetInteger(Output *pO) const
 
 	// Note: stoi(s) converts string s into its equivalent integer (for example, "55" is converted to 55)
 
-	return stoi(GetSrting(pO)); // this line should be changed with your implementation
+	string S = GetString(pO);
+	if (S.length() == 0)
+	{
+		return 0;
+	}
+	else if (S.length() == 1)
+	{
+		if (S[0] < '0' || S[0] > '9')
+		{
+			return 0;
+		}
+	}
+	else
+	{
+		if ((S[0] < '0' || S[0] > '9') && S[0] != '-')
+		{
+			return 0;
+		}
+		for (int i = 1; i < S.length(); i++)
+		{
+			if (S[i] < '0' || S[i] > '9')
+			{
+				return 0;
+			}
+		}
+	}
+	return stoi(S); // this line should be changed with your implementation
 }
 
 //======================================================================================//
@@ -127,6 +153,7 @@ ActionType Input::GetUserAction() const
 			{
 				case ITM_ROLL_DICE: return ROLL_DICE;
 				case ITM_SWITCH_TO_DESIGN_MODE: return TO_DESIGN_MODE;
+				case ITM_EXIT_PLAY: return EXIT;
 				case ITM_INPUT_DICE_VALUE: return INPUT_DICE_VALUE;
 				case ITM_START_NEW_GAME: return NEW_GAME;
 				default: return EMPTY;

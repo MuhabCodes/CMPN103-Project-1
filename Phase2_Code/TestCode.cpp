@@ -56,8 +56,6 @@ int main()
 	pOut->DrawCell(card_4, 4);
 	pOut->DrawCell(card_10, 10);
 
-
-
 	pOut->PrintMessage("FINISHED - Drawing (Cells with CARDS) Test,  Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
@@ -88,10 +86,9 @@ int main()
 	pOut->DrawPlayer(player_1, 2, UI.PlayerColors[2]);
 	pOut->DrawPlayer(player_1, 3, UI.PlayerColors[3]);
 	pOut->DrawPlayer(player_15, 0, UI.PlayerColors[0]);
+	pOut->DrawPlayer(player_99, 1, UI.PlayerColors[1]);
 	pOut->DrawPlayer(player_99, 5, UI.PlayerColors[1]);
 	pOut->DrawPlayer(player_99, -1, UI.PlayerColors[1]);
-	
-
 
 	pOut->PrintMessage("FINISHED - Drawing (Players) Test,  Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -116,10 +113,9 @@ int main()
 	
 	pOut->DrawLadder(start_1, end_34);
 	pOut->DrawLadder(start_22, end_99);
-	pOut->DrawLadder(start_1,end_99);
+
+	pOut->DrawLadder(start_1, end_99);
 	pOut->DrawLadder(end_34, start_1);
-
-
 
 	pOut->PrintMessage("FINISHED - Drawing (Ladders) Test,  Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -144,9 +140,9 @@ int main()
 	
 	pOut->DrawSnake(start_24, end_2);
 	pOut->DrawSnake(start_98, end_32);
+
 	pOut->DrawSnake(start_98, end_2);
 	pOut->DrawSnake(end_2,start_24);
-
 
 	pOut->PrintMessage("FINISHED - Drawing (Snakes) Test,  Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -167,14 +163,15 @@ int main()
 
 	///TODO: Add code here to 
 	// 1- Call GetInteger Function and receive its returned integer
-	int ret = pIn->GetInteger(pOut);
+	pOut->PrintMessage("Enter an integer:");
+	int N = pIn->GetInteger(pOut);
+
 	// 2- Print it in the status bar in this format:   You Entered: 116
 	//    (assuming the entered number is 116)
-	pOut->PrintMessage("You entered: ");
-	pOut->PrintMessage(to_string(ret));
+	pOut->PrintMessage("You entered the number: " + to_string(N));
+
 	// 3- Call GetPointClicked() function
 	pIn->GetPointClicked(x, y);
-
 
 	pOut->PrintMessage("FINISHED - (GetInteger) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -188,29 +185,20 @@ int main()
 	///TODO: Add code here to 
 	// 1- Call function GetCellClicked
 	ClickedCell = pIn->GetCellClicked();
+
 	// 2- Print on the status bar the vCell and hCell of the clicked cell
-	pOut->PrintMessage(to_string(ClickedCell.VCell()));
-	pOut->PrintMessage(to_string(ClickedCell.HCell()));
+	pOut->PrintMessage("(vCell, hCell) = (" + to_string(ClickedCell.VCell()) + ", " + to_string(ClickedCell.HCell()) + ")");
+
 	// 3- Repeat Step 1 and 2 five times
-	ClickedCell = pIn->GetCellClicked();
-	pOut->PrintMessage(to_string(ClickedCell.VCell()));
-	pOut->PrintMessage(to_string(ClickedCell.HCell()));
-	ClickedCell = pIn->GetCellClicked();
-	pOut->PrintMessage(to_string(ClickedCell.VCell()));
-	pOut->PrintMessage(to_string(ClickedCell.HCell()));
-	ClickedCell = pIn->GetCellClicked();
-	pOut->PrintMessage(to_string(ClickedCell.VCell()));
-	pOut->PrintMessage(to_string(ClickedCell.HCell()));
-	ClickedCell = pIn->GetCellClicked();
-	pOut->PrintMessage(to_string(ClickedCell.VCell()));
-	pOut->PrintMessage(to_string(ClickedCell.HCell()));
-	ClickedCell = pIn->GetCellClicked();
-	pOut->PrintMessage(to_string(ClickedCell.VCell()));
-	pOut->PrintMessage(to_string(ClickedCell.HCell()));
+	for (int i = 0; i < 5; i++)
+	{
+		ClickedCell = CellPosition();
+		ClickedCell = pIn->GetCellClicked();
+		pOut->PrintMessage("(vCell, hCell) = (" + to_string(ClickedCell.VCell()) + ", " + to_string(ClickedCell.HCell()) + ")");
+	}
 
 	pOut->PrintMessage("FINISHED - (GetCellClicked) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
-
 
 	/// 3.3- Reading a String ///
 	/// =====================
@@ -220,22 +208,17 @@ int main()
 
 	///TODO: Add code here to 
 	// 1- Read a string from the user on the status bar
-
-	string s=pIn->GetSrting(pOut);
+	pOut->PrintMessage("Enter a string:");
+	string S = pIn->GetString(pOut);
 
 	// 2- After reading the string clear the status bar
-	
 	pOut->ClearStatusBar();
 	
 	// 3- print on the status bar "You Entered" then print the string
-	
-	pOut->PrintMessage("You Entered");
-	pOut->PrintMessage(s);
-	pIn->GetSrting(pOut);
+	pOut->PrintMessage("You entered the string: " + S);
+	pIn->GetPointClicked(x, y);
 	
 	// NOTE: GetString() is already implemented. It is just required from you to call it
-
-
 
 	pOut->PrintMessage("FINISHED - (GetSrting) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -255,96 +238,46 @@ int main()
 
 	///TODO:
 	// 1- Ask user to enter an integer and read it using GetInteger()
-	int n = pIn->GetInteger(pOut);
+	pOut->PrintMessage("Enter integer for vCell:");
+	N = pIn->GetInteger(pOut);
+
 	// 2- Call SetVCell() of cellpos_1 with that integer
-	cellpos_1.SetVCell(n);
+	cellpos_1.SetVCell(N);
+
 	// 3- Print GetVCell() of cellpos_1 as follows: "Now the vCell = 5" (assuming the entered integer is 5)
-	int v = cellpos_1.VCell();
-	pOut->PrintMessage("Now the vCell =");
-	pOut->PrintMessage(to_string(v));
+	pOut->PrintMessage("Now the vCell = " + to_string(cellpos_1.VCell()) + ", Click to continue");
+
 	// 4- Call GetPointClicked()
 	pIn->GetPointClicked(x,y);
+
 	// 5- Repeat the above steps FIVE TIMES
-
-	n = pIn->GetInteger(pOut);
-	cellpos_1.SetVCell(n);
-	v = cellpos_1.VCell();
-	pOut->PrintMessage("Now the vCell =");
-	pOut->PrintMessage(to_string(v));
-	pIn->GetPointClicked(x, y); 
-	
-	n = pIn->GetInteger(pOut);
-	cellpos_1.SetVCell(n);
-	v = cellpos_1.VCell();
-	pOut->PrintMessage("Now the vCell =");
-	pOut->PrintMessage(to_string(v));
-	pIn->GetPointClicked(x, y);
-
-	n = pIn->GetInteger(pOut);
-	cellpos_1.SetVCell(n);
-	v = cellpos_1.VCell();
-	pOut->PrintMessage("Now the vCell =");
-	pOut->PrintMessage(to_string(v));
-	pIn->GetPointClicked(x, y);
-
-	n = pIn->GetInteger(pOut);
-	cellpos_1.SetVCell(n);
-	v = cellpos_1.VCell();
-	pOut->PrintMessage("Now the vCell =");
-	pOut->PrintMessage(to_string(v));
-	pIn->GetPointClicked(x, y);
-
-	n = pIn->GetInteger(pOut);
-	cellpos_1.SetVCell(n);
-	v = cellpos_1.VCell();
-	pOut->PrintMessage("Now the vCell =");
-	pOut->PrintMessage(to_string(v));
-	pIn->GetPointClicked(x, y);
+	for (int i = 0; i < 5; i++)
+	{
+		cellpos_1 = CellPosition(0, 0);
+		pOut->PrintMessage("Enter integer for vCell:");
+		N = pIn->GetInteger(pOut);
+		cellpos_1.SetVCell(N);
+		pOut->PrintMessage("Now the vCell = " + to_string(cellpos_1.VCell()) + ", Click to continue");
+		pIn->GetPointClicked(x, y);
+	}
 
 	// 6- Repeat all the above steps to test SetHCell() function instead with the needed modifications
-
-	int m = pIn->GetInteger(pOut);
-	cellpos_1.SetHCell(m);
-	int h = cellpos_1.HCell();
-	pOut->PrintMessage("Now the HCell =");
-	pOut->PrintMessage(to_string(h));
-	pIn->GetPointClicked(x, y); 
-	
-        m = pIn->GetInteger(pOut);
-	cellpos_1.SetHCell(m);
-	h = cellpos_1.HCell();
-	pOut->PrintMessage("Now the HCell =");
-	pOut->PrintMessage(to_string(h));
+	CellPosition cellpos_2(0, 0);
+	pOut->PrintMessage("Enter integer for hCell:");
+	N = pIn->GetInteger(pOut);
+	cellpos_2.SetHCell(N);
+	pOut->PrintMessage("Now the hCell = " + to_string(cellpos_2.HCell()) + ", Click to continue");
 	pIn->GetPointClicked(x, y);
 
-	m = pIn->GetInteger(pOut);
-	cellpos_1.SetHCell(m);
-	h = cellpos_1.HCell();
-	pOut->PrintMessage("Now the HCell =");
-	pOut->PrintMessage(to_string(h));
-	pIn->GetPointClicked(x, y);
-
-	m = pIn->GetInteger(pOut);
-	cellpos_1.SetHCell(m);
-	h = cellpos_1.HCell();
-	pOut->PrintMessage("Now the HCell =");
-	pOut->PrintMessage(to_string(h));
-	pIn->GetPointClicked(x, y);
-
-	m = pIn->GetInteger(pOut);
-	cellpos_1.SetHCell(m);
-	h = cellpos_1.HCell();
-	pOut->PrintMessage("Now the HCell =");
-	pOut->PrintMessage(to_string(h));
-	pIn->GetPointClicked(x, y);
-
-	m = pIn->GetInteger(pOut);
-	cellpos_1.SetHCell(m);
-	h = cellpos_1.HCell();
-	pOut->PrintMessage("Now the HCell =");
-	pOut->PrintMessage(to_string(h));
-	pIn->GetPointClicked(x, y);
-
+	for (int i = 0; i < 5; i++)
+	{
+		cellpos_2 = CellPosition(0, 0);
+		pOut->PrintMessage("Enter integer for hCell:");
+		N = pIn->GetInteger(pOut);
+		cellpos_2.SetHCell(N);
+		pOut->PrintMessage("Now the hCell = " + to_string(cellpos_2.HCell()) + ", Click to continue");
+		pIn->GetPointClicked(x, y);
+	}
 
 	pOut->PrintMessage("FINISHED - (Setters with Validation) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -354,57 +287,33 @@ int main()
 
 	/// TODO:
 	// 1- Read from user two integers representing vCell and hCell
+	pOut->PrintMessage("Enter integer for vCell:");
 	int vc = pIn->GetInteger(pOut);
+	pOut->PrintMessage("Enter integer for hCell:");
 	int hc = pIn->GetInteger(pOut);
+
 	// 2- Creates a CellPosition object of them
-	CellPosition obj1(vc,hc);
+	CellPosition cellpos_3(vc,hc);
+
 	// 3- Use the function GetCellNum() to get the corresponding Cell Number (it used function : GetCellNumFromPosition() inside it)
-	int r = obj1.GetCellNum();
+	N = cellpos_3.GetCellNum();
+
 	// 4- Print the Cell Number on the status bar
-	pOut->PrintMessage("Cell Number:");
-	pOut->PrintMessage(to_string(obj1.GetCellNum()));
+	pOut->PrintMessage("Cell Number = " + to_string(N) + ", Click to continue");
+	pIn->GetPointClicked(x, y);
+
 	// 5- Repeat the above steps Five TIMES
-
-	vc = pIn->GetInteger(pOut);
-	hc = pIn->GetInteger(pOut);
-	obj1.SetVCell(vc);
-	obj1.SetHCell(hc);
-	r = obj1.GetCellNum();
-	pOut->PrintMessage("Cell Number:");
-	pOut->PrintMessage(to_string(obj1.GetCellNum()));
-
-	vc = pIn->GetInteger(pOut);
-	hc = pIn->GetInteger(pOut);
-	obj1.SetVCell(vc);
-	obj1.SetHCell(hc);
-	r = obj1.GetCellNum();
-	pOut->PrintMessage("Cell Number:");
-	pOut->PrintMessage(to_string(obj1.GetCellNum()));
-
-	vc = pIn->GetInteger(pOut);
-	hc = pIn->GetInteger(pOut);
-	obj1.SetVCell(vc);
-	obj1.SetHCell(hc);
-	r = obj1.GetCellNum();
-	pOut->PrintMessage("Cell Number:");
-	pOut->PrintMessage(to_string(obj1.GetCellNum()));
-
-	vc = pIn->GetInteger(pOut);
-	hc = pIn->GetInteger(pOut);
-	obj1.SetVCell(vc);
-	obj1.SetHCell(hc);
-	r = obj1.GetCellNum();
-	pOut->PrintMessage("Cell Number:");
-	pOut->PrintMessage(to_string(obj1.GetCellNum()));
-
-
-	vc = pIn->GetInteger(pOut);
-	hc = pIn->GetInteger(pOut);
-	obj1.SetVCell(vc);
-	obj1.SetHCell(hc);
-	r = obj1.GetCellNum();
-	pOut->PrintMessage("Cell Number:");
-	pOut->PrintMessage(to_string(obj1.GetCellNum()));
+	for (int i = 0; i < 5; i++)
+	{
+		pOut->PrintMessage("Enter integer for vCell:");
+		vc = pIn->GetInteger(pOut);
+		pOut->PrintMessage("Enter integer for hCell:");
+		hc = pIn->GetInteger(pOut);
+		cellpos_3 = CellPosition(vc, hc);
+		N = cellpos_3.GetCellNum();
+		pOut->PrintMessage("Cell Number = " + to_string(N) + ", Click to continue");
+		pIn->GetPointClicked(x, y);
+	}
 
 	pOut->PrintMessage("FINISHED - (GetCellNumFromPosition) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -414,52 +323,26 @@ int main()
 
 	/// TODO:
 	// 1- Read from user one integer representing cellNum
-	int cell_num = pIn->GetInteger(pOut);
+	pOut->PrintMessage("Enter integer for cellNum:");
+	N = pIn->GetInteger(pOut);
+
 	// 2- Creates a CellPosition object of that integer using that constructor: CellPosition (int cellNum);
-	CellPosition OBJ(cell_num);
 	//   --> it uses the function : GetCellPositionFromNum () inside it
+	CellPosition cellpos_4(N);
+
 	// 4- Print the Cell vCell and hCell on the status bar
-	pOut->PrintMessage("Vcell:");
-	pOut->PrintMessage(to_string(OBJ.VCell()));
-	pOut->PrintMessage("Hcell:");
-	pOut->PrintMessage(to_string(OBJ.HCell()));
+	pOut->PrintMessage("(vCell, hCell) = (" + to_string(cellpos_4.VCell()) + ", " + to_string(cellpos_4.HCell()) + ")" + ", Click to continue");
+	pIn->GetPointClicked(x,y);	//Wait for any click
+
 	// 5- Repeat the above steps Five TIMES
-
-	int cell_num1 = pIn->GetInteger(pOut);
-	CellPosition OBJ1(cell_num1);
-	pOut->PrintMessage("Vcell:");
-	pOut->PrintMessage(to_string(OBJ1.VCell()));
-	pOut->PrintMessage("Hcell:");
-	pOut->PrintMessage(to_string(OBJ1.HCell()));
-
-	int cell_num2 = pIn->GetInteger(pOut);
-	CellPosition OBJ2(cell_num2);
-	pOut->PrintMessage("Vcell:");
-	pOut->PrintMessage(to_string(OBJ2.VCell()));
-	pOut->PrintMessage("Hcell:");
-	pOut->PrintMessage(to_string(OBJ2.HCell()));
-
-	int cell_num3 = pIn->GetInteger(pOut);
-	CellPosition OBJ3(cell_num3);
-	pOut->PrintMessage("Vcell:");
-	pOut->PrintMessage(to_string(OBJ3.VCell()));
-	pOut->PrintMessage("Hcell:");
-	pOut->PrintMessage(to_string(OBJ3.HCell()));
-
-	int cell_num4 = pIn->GetInteger(pOut);
-	CellPosition OBJ4(cell_num4);
-	pOut->PrintMessage("Vcell:");
-	pOut->PrintMessage(to_string(OBJ4.VCell()));
-	pOut->PrintMessage("Hcell:");
-	pOut->PrintMessage(to_string(OBJ4.HCell()));
-
-	int cell_num5 = pIn->GetInteger(pOut);
-	CellPosition OBJ5(cell_num5);
-	pOut->PrintMessage("Vcell:");
-	pOut->PrintMessage(to_string(OBJ5.VCell()));
-	pOut->PrintMessage("Hcell:");
-	pOut->PrintMessage(to_string(OBJ5.HCell()));
-
+	for (int i = 0; i < 5; i++)
+	{
+		pOut->PrintMessage("Enter integer for cellNum:");
+		N = pIn->GetInteger(pOut);
+		cellpos_4 = CellPosition(N);
+		pOut->PrintMessage("(vCell, hCell) = (" + to_string(cellpos_4.VCell()) + ", " + to_string(cellpos_4.HCell()) + ")" + ", Click to continue");
+		pIn->GetPointClicked(x,y);	//Wait for any click
+	}
 
 	pOut->PrintMessage("FINISHED - (GetCellPositionFromNum) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -502,11 +385,39 @@ int main()
 			//        the one given in the screenshot of project document
 
 			pOut->PrintMessage("Action: TO_PLAY_MODE , Click anywhere");
-			pOut->CreatePlayModeToolBar();
+			pOut->PrintPlayersInfo("P0(100, 0), P1(100, 0), P2(100, 0), P3(100, 0) | Curr = 0");
 			break;
 
 
 			///TODO:  ADD Cases similarly for ALL the remaining actions of DESIGN Mode
+
+		case COPY_CARD:
+			pOut->PrintMessage("Action: COPY_CARD , Click anywhere");
+			break;
+
+		case CUT_CARD:
+			pOut->PrintMessage("Action: CUT_CARD , Click anywhere");
+			break;
+
+		case PASTE_CARD:
+			pOut->PrintMessage("Action: PASTE_CARD , Click anywhere");
+			break;
+
+		case EDIT_CARD:
+			pOut->PrintMessage("Action: EDIT_CARD , Click anywhere");
+			break;
+
+		case DELETE_GAME_OBJECT:
+			pOut->PrintMessage("Action: DELETE_GAME_OBJECT , Click anywhere");
+			break;
+
+		case SAVE_GRID:
+			pOut->PrintMessage("Action: SAVE_GRID , Click anywhere");
+			break;
+
+		case OPEN_GRID:
+			pOut->PrintMessage("Action: OPEN_GRID , Click anywhere");
+			break;
 
 
 		case ROLL_DICE:
@@ -520,6 +431,25 @@ int main()
 
 			///TODO:  ADD Cases similarly for ALL the remaining actions of PLAY Mode
 
+		case INPUT_DICE_VALUE:
+			pOut->PrintMessage("Action: INPUT_DICE_VALUE , Click anywhere");
+			break;
+
+		case NEW_GAME:
+			pOut->PrintMessage("Action: NEW_GAME , Click anywhere");
+			break;
+
+		case GRID_AREA:
+			pOut->PrintMessage("GRID , Click anywhere");
+			break;
+		
+		case STATUS:
+			pOut->PrintMessage("STATUS , Click anywhere");
+			break;
+
+		case EMPTY:
+			pOut->PrintMessage("EMPTY , Click anywhere");
+			break;
 		}
 	}while(ActType != EXIT);
 
