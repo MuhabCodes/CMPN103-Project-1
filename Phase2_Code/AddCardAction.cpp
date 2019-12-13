@@ -4,6 +4,7 @@
 #include "Output.h"
 #include "CardOne.h"
 #include "CardTwo.h"
+#include "CardTen.h"
 
 AddCardAction::AddCardAction(ApplicationManager *pApp) : Action(pApp)
 {
@@ -25,26 +26,45 @@ void AddCardAction::ReadActionParameters()
 	// 1- Get a Pointer to the Input / Output Interfaces
 
 	Grid* pGrid = pManager->GetGrid();
-
 	Input* pIn = NULL;
 	pIn = pGrid->GetInput();
-	
 	Output* pOut = NULL;
 	pOut = pGrid->GetOutput();
 
 	// 2- Read the "cardNumber" parameter and set its data member
 	
-	pOut->PrintMessage("Enter card number:");
-
-	cardNumber = pIn->GetInteger(pOut);
-
-	pOut->PrintMessage("Click on cell to add card");
-
-	cardPosition = pIn->GetCellClicked();
 	
+	pOut->PrintMessage("Enter card number:");
+	int c = pIn->GetInteger(pOut);
+
+	cardNumber = c;
+	pOut->PrintMessage("You entered : " + to_string(c));
+
 
 	// 3- Read the "cardPosition" parameter (its cell position) and set its data member
+	pOut->PrintMessage("Enter integer for vCell: ");
+	int v = pIn->GetInteger(pOut);
+	bool b = cardPosition.SetVCell(v);
+	while (b == false)                                            //vCell validation.
+	{
+		pOut->PrintMessage("Invalid, Re-enter vCell:");
+		v = pIn->GetInteger(pOut);
+		b = cardPosition.SetVCell(v);
+	}
+	pOut->PrintMessage("vCell = " + to_string(v));
 
+	pOut->PrintMessage("Enter integer for hCell:");
+	int h = pIn->GetInteger(pOut);
+	bool b2 = cardPosition.SetHCell(h);
+	while (b2 == false)                                            //hCell validation.
+	{
+		pOut->PrintMessage("Invalid, Re-enter hCell:");
+		h = pIn->GetInteger(pOut);
+		b2 = cardPosition.SetVCell(v);
+	}
+	pOut->PrintMessage("hCell = " + to_string(h));
+
+	pOut->PrintMessage("(vCell, hCell) = ( " + to_string(cardPosition.VCell()) + " , " + to_string(cardPosition.HCell()) + " )");
 
 	// 4- Make the needed validations on the read parameters
 
@@ -100,11 +120,11 @@ void AddCardAction::Execute()
 		break;
 	case 9:
 		pCard = new CardNine(cardPosition);
-		break;
+		break;*/
 	case 10:
 		pCard = new CardTen(cardPosition);
 		break;
-	case 11:
+	/*case 11:
 		pCard = new CardEleven(cardPosition);
 		break;
 	case 12:

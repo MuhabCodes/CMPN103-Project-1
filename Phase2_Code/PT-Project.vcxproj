@@ -135,6 +135,7 @@
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CardOne.cpp" />
+    <ClCompile Include="CardTen.cpp" />
     <ClCompile Include="CardTwo.cpp" />
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="CellPosition.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CardOne.h" />
+    <ClInclude Include="CardTen.h" />
     <ClInclude Include="CardTwo.h" />
     <ClInclude Include="Cell.h" />
     <ClInclude Include="CellPosition.h" />
