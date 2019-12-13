@@ -3,6 +3,7 @@
 #include "Grid.h"
 #include "AddLadderAction.h"
 #include "AddCardAction.h"
+#include "EditCardAction.h"
 #include "RollDiceAction.h"
 #include "AddSnakeAction.h"
 #include "ToPlayModeAction.h"
@@ -71,6 +72,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case ADD_CARD:
 		// create an object of AddCardAction here
 		pAct = new AddCardAction(this);
+		break;
+
+	case EDIT_CARD:
+		pAct = new EditCardAction(this);
 		break;
 
 	case DELETE_GAME_OBJECT:
