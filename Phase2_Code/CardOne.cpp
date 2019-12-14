@@ -50,6 +50,7 @@ void CardOne::Apply(Grid* pGrid, Player* pPlayer)
 
 	// 1- Call Apply() of the base class Card to print the message that you reached this card number
 
+
 	Card::Apply(pGrid, pPlayer);
 	pPlayer = pGrid->GetCurrentPlayer();
 

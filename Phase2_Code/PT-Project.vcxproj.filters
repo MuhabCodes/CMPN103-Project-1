@@ -205,11 +205,23 @@
     <ClCompile Include="DeleteGameObjectAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="CardTen.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="EditCardAction.cpp">
       <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="CardTen.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardEleven.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardTwelve.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardThirteen.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardFourteen.cpp">
+      <Filter>GameObjects\Cards</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -348,6 +360,18 @@
     </ClInclude>
     <ClInclude Include="EditCardAction.h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="CardEleven.h">
+      <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardTwelve.h">
+      <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardThirteen.h">
+      <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardFourteen.h">
+      <Filter>GameObjects\Cards</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

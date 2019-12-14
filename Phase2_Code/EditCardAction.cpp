@@ -6,7 +6,10 @@
 #include "CardOne.h"
 #include "CardTwo.h"
 #include "CardTen.h"
-
+#include "CardEleven.h"
+#include "CardTwelve.h"
+#include "CardThirteen.h"
+#include "CardFourteen.h"
 
 
 EditCardAction::EditCardAction(ApplicationManager* pApp): Action(pApp)
@@ -79,18 +82,18 @@ void EditCardAction::Execute()
 	case 10:
 		pCard = new CardTen(cell);
 		break;
-		/*case 11:
-			pCard = new CardEleven(cell);
-			break;
-		case 12:
-			pCard = new CardTwelve(cell);
-			break;
-		case 13:
-			pCard = new CardThirteen(cell);
-			break;
-		case 14:
-			pCard = new CardFourteen(cell);
-			break;*/
+	case 11:
+		pCard = new CardEleven(cell);
+		break;
+	case 12:
+		pCard = new CardTwelve(cell);
+		break;
+	case 13:
+		pCard = new CardThirteen(cell);
+		break;
+	case 14:
+		pCard = new CardFourteen(cell);
+		break;
 	default:
 		break;
 		

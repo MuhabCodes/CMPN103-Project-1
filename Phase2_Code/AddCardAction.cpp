@@ -5,6 +5,10 @@
 #include "CardOne.h"
 #include "CardTwo.h"
 #include "CardTen.h"
+#include "CardEleven.h"
+#include "CardTwelve.h"
+#include "CardThirteen.h"
+#include "CardFourteen.h"
 
 AddCardAction::AddCardAction(ApplicationManager *pApp) : Action(pApp)
 {
@@ -15,8 +19,8 @@ AddCardAction::~AddCardAction()
 {
 }
 
-void AddCardAction::ReadActionParameters() 
-{	
+void AddCardAction::ReadActionParameters()
+{
 
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
 
@@ -32,39 +36,22 @@ void AddCardAction::ReadActionParameters()
 	pOut = pGrid->GetOutput();
 
 	// 2- Read the "cardNumber" parameter and set its data member
-	
-	
-	pOut->PrintMessage("Enter card number:");
-	int c = pIn->GetInteger(pOut);
 
-	cardNumber = c;
-	pOut->PrintMessage("You entered : " + to_string(c));
+	pOut->PrintMessage("Enter Card Number: .. ");
+	
+	cardNumber = pIn->GetInteger(pOut);
 
+	while (cardNumber < 0 || cardNumber > 14)
+	{
+		pOut->PrintMessage("Error! Re-Enter Card Number: ");
+		cardNumber = pIn->GetInteger(pOut);
+	}
 
 	// 3- Read the "cardPosition" parameter (its cell position) and set its data member
-	pOut->PrintMessage("Enter integer for vCell: ");
-	int v = pIn->GetInteger(pOut);
-	bool b = cardPosition.SetVCell(v);
-	while (b == false)                                            //vCell validation.
-	{
-		pOut->PrintMessage("Invalid, Re-enter vCell:");
-		v = pIn->GetInteger(pOut);
-		b = cardPosition.SetVCell(v);
-	}
-	pOut->PrintMessage("vCell = " + to_string(v));
+	
+	pOut->PrintMessage("Enter cell to add card ");
 
-	pOut->PrintMessage("Enter integer for hCell:");
-	int h = pIn->GetInteger(pOut);
-	bool b2 = cardPosition.SetHCell(h);
-	while (b2 == false)                                            //hCell validation.
-	{
-		pOut->PrintMessage("Invalid, Re-enter hCell:");
-		h = pIn->GetInteger(pOut);
-		b2 = cardPosition.SetVCell(v);
-	}
-	pOut->PrintMessage("hCell = " + to_string(h));
-
-	pOut->PrintMessage("(vCell, hCell) = ( " + to_string(cardPosition.VCell()) + " , " + to_string(cardPosition.HCell()) + " )");
+	cardPosition = pIn->GetCellClicked();
 
 	// 4- Make the needed validations on the read parameters
 
@@ -124,7 +111,7 @@ void AddCardAction::Execute()
 	case 10:
 		pCard = new CardTen(cardPosition);
 		break;
-	/*case 11:
+	case 11:
 		pCard = new CardEleven(cardPosition);
 		break;
 	case 12:
@@ -135,7 +122,7 @@ void AddCardAction::Execute()
 		break;
 	case 14:
 		pCard = new CardFourteen(cardPosition);
-		break;*/
+		break;
 	default:
 		break;
 		// A- Add the remaining cases

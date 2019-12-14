@@ -1,9 +1,11 @@
 #pragma once
 #include "Card.h"
-class CardTwo :
-	public Card
+class CardTwo : public Card
+
 {
-	int walletAmount;
+
+	int walletAmount; 
+
 public:
 	CardTwo(const CellPosition& pos);
 

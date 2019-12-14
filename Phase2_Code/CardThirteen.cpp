@@ -1,18 +1,18 @@
-#include "CardTen.h"
+#include "CardThirteen.h"
 
-CardTen::CardTen(const CellPosition& pos) : Card(pos)
+CardThirteen::CardThirteen(const CellPosition& pos) : Card(pos)
 {
-	cardNumber = 10;
+	cardNumber = 13;
 
 }
 
-int CardTen::price = 0;
+int CardThirteen::price = 0;
 
-int CardTen::rent = 0;
+int CardThirteen::rent = 0;
 
-Player* CardTen::Owner = NULL;
+Player* CardThirteen::Owner = NULL;
 
-void CardTen::ReadCardParameters(Grid* pGrid)
+void CardThirteen::ReadCardParameters(Grid* pGrid)
 {
 	Input* pIn = NULL;
 	Output* pOut = NULL;
@@ -37,12 +37,12 @@ void CardTen::ReadCardParameters(Grid* pGrid)
 
 }
 
-void CardTen::SetOwner(Player* pPlayer)
+void CardThirteen::SetOwner(Player* pPlayer)
 {
 	Owner = pPlayer;
 }
 
-bool CardTen::IsBought()
+bool CardThirteen::IsBought()
 {
 	if (Owner == NULL)
 	{
@@ -56,7 +56,7 @@ bool CardTen::IsBought()
 
 }
 
-Player* CardTen::buy(Grid* pGrid, Player* pPlayer)
+Player* CardThirteen::buy(Grid* pGrid, Player* pPlayer)
 {
 	Input* pIn = NULL;
 	Output* pOut = NULL;
@@ -95,7 +95,7 @@ Player* CardTen::buy(Grid* pGrid, Player* pPlayer)
 	return p;
 }
 
-void CardTen::pay(Grid* pGrid, Player* pPlayer)
+void CardThirteen::pay(Grid* pGrid, Player* pPlayer)
 {
 	bool b = IsBought();
 	Player* p = pGrid->GetCurrentPlayer();
@@ -115,13 +115,14 @@ void CardTen::pay(Grid* pGrid, Player* pPlayer)
 
 }
 
-void CardTen::Apply(Grid* pGrid, Player* pPlayer)
+void CardThirteen::Apply(Grid* pGrid, Player* pPlayer)
 {
 	Card::Apply(pGrid, pPlayer);
 	buy(pGrid, pPlayer);
 	pay(pGrid, pPlayer);
 }
 
-CardTen::~CardTen()
+CardThirteen::~CardThirteen()
 {
 }
+

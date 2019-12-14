@@ -12,7 +12,7 @@ InputDiceValue::InputDiceValue(ApplicationManager* pApp) : Action(pApp)
 void InputDiceValue::ReadActionParameters()
 {
 	// Get a grid pointer to use GetInput and GetOutput functions 
-	
+
 	Grid* pGrid = NULL;
 	pGrid = pManager->GetGrid();
 
@@ -21,11 +21,17 @@ void InputDiceValue::ReadActionParameters()
 
 	Output* pOut = NULL;
 	pOut = pGrid->GetOutput();
-	
+
 	// after getting Input and output pointers I can now print messages and take user inputs
 
 	pOut->PrintMessage("Input dice value: ");
-	DiceInput=pIn->GetInteger(pOut);
+	DiceInput = pIn->GetInteger(pOut);
+	while (DiceInput < 0 || DiceInput > 6)
+	{
+		pOut->PrintMessage("Error! Input dice value ");
+		DiceInput = pIn->GetInteger(pOut);
+	}
+
 
 	pOut->ClearStatusBar();
 

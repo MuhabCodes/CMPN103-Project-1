@@ -22,6 +22,8 @@ void CardTwo::ReadCardParameters(Grid* pGrid)
 
 void CardTwo::Apply(Grid* pGrid, Player* pPlayer)
 {
+
+	ReadCardParameters(pGrid);
 	// Apply card fn in base class Card
 
 	Card::Apply(pGrid, pPlayer);
