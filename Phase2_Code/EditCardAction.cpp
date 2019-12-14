@@ -5,6 +5,13 @@
 #include "Output.h"
 #include "CardOne.h"
 #include "CardTwo.h"
+//#include "CardThree.h"
+//#Include "CardFour.h"
+//#Include "CardFive.h"
+//#Include "CardSix.h"
+//#Include "CardSeven.h"
+//#Include "CardEight.h"
+//#Include "CardNine.h"
 #include "CardTen.h"
 #include "CardEleven.h"
 #include "CardTwelve.h"
@@ -45,8 +52,11 @@ void EditCardAction::Execute()
 	Grid* pGrid = NULL;
 	pGrid = pManager->GetGrid();
 	
+	// 1- The first line of any Action Execution is to read its parameter first
+
 	ReadActionParameters();
 
+	// 2- Switch case on cardNumber data member and create the appropriate card object type
 
 	Card* pCard = NULL; // will point to the card object type
 	switch (newCardNumber)
@@ -100,29 +110,29 @@ void EditCardAction::Execute()
 
 	}
 
+	// 3- if pCard is correctly set in the switch case (i.e. if pCard is pointing to an object -- NOT NULL)
+
 	if (pCard)
 	{
 
-		/*Cell c(cell);
-		Card* p = NULL;
-		p = c.HasCard();
-		oldCardNumber = p->GetCardNumber();*/
-
-		bool b = pGrid->AddObjectToCell(pCard);
-		
-			if (b==false)
+		bool b = pGrid->AddObjectToCell(pCard);           // Adds a GameObject to the Cell of its "position" data member
+	                                                     // only if the Cell does NOT already contain an object, 
+	                                                    // otherwise return false and don't add
+	
+			if (b == false)                               //if cell contains an object.
 			{
-				pCard->ReadCardParameters(pGrid);
-				pGrid->RemoveObjectFromCell(cell);
-				pGrid->AddObjectToCell(pCard);
+
+				pCard->ReadCardParameters(pGrid);           	// Make the "pCard" reads its card parameters: ReadCardParameters()
+
+				pGrid->RemoveObjectFromCell(cell);             // Removes the GameObject of the Cell of the passed "position"     
+
+				pGrid->AddObjectToCell(pCard);                //Draw the new card
 			}
 			else
 			{
 				pGrid->PrintErrorMessage("Invalid, No card in this cell,Click to continue...");
 				pGrid->RemoveObjectFromCell(cell);
 			}
-
 	}
 
-	
 }

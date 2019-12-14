@@ -1,5 +1,13 @@
 #pragma once
 #include "Card.h"
+// [ CardThirteen ] Summary:
+// Its Apply() Function: Gives the player the option to buy this celland all cells containing a card with the same number.
+					  //For example, if a player chooses to buy a cell with card 13, he will own all cells having a card 13.
+					 //This cell is considered a station for a specific price.
+					//Whenever another player moves to a cell owned by another player, he has to pay the rent to the player who owns the cell.
+
+// Its Parameters: The price of the celland the rent are taken as input during grid design  --> ReadCardParameters()
+
 class CardThirteen :public Card
 {
 	//CardThirteen parameters:
