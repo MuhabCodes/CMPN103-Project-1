@@ -50,46 +50,8 @@ bool Grid::AddObjectToCell(GameObject * pNewObject)  // think if any validation 
 		if( pPrevObject)  // the cell already contains a game object
 			return false; // do NOT add and return false
 
-		// Checks if the start cell is the end cell of another ladder or snake
-		if ((dynamic_cast<Ladder*>(pNewObject)) || (dynamic_cast<Snake*>(pNewObject)))
-		{
-			if (CellList[pos.VCell()][pos.HCell()]->HasEnd())
-			{
-				return false;
-			}
-		}
-
-		// Checks if the end cell is the start cell of another ladder or snake
-		if (dynamic_cast<Ladder*>(pNewObject))
-		{
-			CellPosition endPos = ((Ladder*)pNewObject)->GetEndPosition();
-			if (CellList[endPos.VCell()][endPos.HCell()]->GetGameObject())
-			{
-				return false;
-			}
-		}
-		if (dynamic_cast<Snake*>(pNewObject))
-		{
-			CellPosition endPos = ((Snake*)pNewObject)->GetEndPosition();
-			if (CellList[endPos.VCell()][endPos.HCell()]->GetGameObject())
-			{
-				return false;
-			}
-		}
-
 		// Set the game object of the Cell with the new game object
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(pNewObject);
-		
-		if (dynamic_cast<Ladder*>(pNewObject))
-		{
-			CellPosition endPos = ((Ladder*)pNewObject)->GetEndPosition();
-			CellList[endPos.VCell()][endPos.HCell()]->SetEnd(true);
-		}
-		if (dynamic_cast<Snake*>(pNewObject))
-		{
-			CellPosition endPos = ((Snake*)pNewObject)->GetEndPosition();
-			CellList[endPos.VCell()][endPos.HCell()]->SetEnd(true);
-		}
 		return true; // indicating that addition is done
 	}
 	return false; // if not a valid position
@@ -101,20 +63,6 @@ void Grid::RemoveObjectFromCell(const CellPosition & pos)
 	{
 		// Note: you can deallocate the object here before setting the pointer to null if it is needed
 
-		// deletes end object for ladders and snakes
-		GameObject* obj = CellList[pos.VCell()][pos.HCell()]->GetGameObject();
-		if (dynamic_cast<Ladder*>(obj))
-		{
-			CellPosition endPos = ((Ladder*)obj)->GetEndPosition();
-			CellList[endPos.VCell()][endPos.HCell()]->SetEnd(false);
-		}
-		if (dynamic_cast<Snake*>(obj))
-		{
-			CellPosition endPos = ((Snake*)obj)->GetEndPosition();
-			CellList[endPos.VCell()][endPos.HCell()]->SetEnd(false);
-		}
-
-		// deletes the object
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
 	}
 }
@@ -216,6 +164,7 @@ Ladder * Grid::GetNextLadder(const CellPosition & position)
 		for (int j = startH; j < NumHorizontalCells; j++) // searching from startH and RIGHT
 		{
 
+
 			///TODO: Check if CellList[i][j] has a ladder, if yes return it
 			
 			if (CellList[i][j]->HasLadder() != NULL)
@@ -251,15 +200,6 @@ Snake* Grid::GetNextSnake(const CellPosition& position)
 	return NULL; // not found
 }
 
-GameObject* Grid::GetGameObject(const CellPosition& position) const
-{
-	return CellList[position.VCell()][position.HCell()]->GetGameObject();
-}
-
-bool Grid::HasEnd(const CellPosition& position) const
-{
-	return CellList[position.VCell()][position.HCell()]->HasEnd();
-}
 
 // ========= User Interface Functions =========
 
@@ -311,7 +251,6 @@ void Grid::UpdateInterface() const
 		// In addition, cards/snakes/ladders do NOT change positions in Play Mode, so need to draw them here too
 	}
 }
-
 
 void Grid::PrintErrorMessage(string msg)
 {
