@@ -38,7 +38,7 @@ void RollDiceAction::Execute()
 
 	bool flag = pGrid->GetEndGame();
 
-	if (flag)
+	if (!flag)
 	{
 
 		srand((int)time(NULL)); // time is for different seed each run
