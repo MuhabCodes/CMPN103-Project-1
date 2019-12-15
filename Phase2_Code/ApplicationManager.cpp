@@ -9,6 +9,7 @@
 #include "ToPlayModeAction.h"
 #include "ToDesignModeAction.h"
 #include "DeleteGameObjectAction.h"
+#include "InputDiceValue.h"
 
 ///TODO: Add #include for all action types
 
@@ -98,7 +99,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new ToDesignModeAction(this);
 		break;
 
-		
+	case INPUT_DICE_VALUE:
+		pAct = new InputDiceValue(this);
+		break;
 
 		///TODO: Add a case for EACH Action type in the Design mode or Play mode
 

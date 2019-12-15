@@ -26,11 +26,6 @@ void InputDiceValue::ReadActionParameters()
 
 	pOut->PrintMessage("Input dice value: ");
 	DiceInput = pIn->GetInteger(pOut);
-	while (DiceInput < 0 || DiceInput > 6)
-	{
-		pOut->PrintMessage("Error! Input dice value ");
-		DiceInput = pIn->GetInteger(pOut);
-	}
 
 
 	pOut->ClearStatusBar();
@@ -48,8 +43,16 @@ void InputDiceValue::Execute()
 
 	Player* pPlayer = pGrid->GetCurrentPlayer();
 
-	pPlayer->Move(pGrid, DiceInput); // move user using
-	pGrid->AdvanceCurrentPlayer();
+	// validation to only move the user when the Input is between 
+	// 1 and 6 to immitate dice numbers
+
+	if (DiceInput > 0 && DiceInput <= 6)
+	{
+		pPlayer->Move(pGrid, DiceInput); // move user using
+		pGrid->AdvanceCurrentPlayer();
+	}
+
+
 }
 
 InputDiceValue::~InputDiceValue()
