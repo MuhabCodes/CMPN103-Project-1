@@ -119,25 +119,25 @@ void Player::Move(Grid * pGrid, int diceNumber)
 	// therefore we can use it in the implementation of the function 
 	// -Muhab
 
-
-	if (!(pCell->GetGameObject()))
+	/*if (pCell->GetGameObject() != NULL)
 	{
 		if (pCell->HasCard())
 		{
-
+			Card* card = (Card*)pCell->GetGameObject();
 		}
 		else if (pCell->HasSnake())
 		{
-
+			
+			Snake* snake = (Snake*)pCell->GetGameObject();
 		}
 		else if (pCell->HasLadder())
 		{
-
+			Ladder* ladder = (Ladder*)pCell->GetGameObject();
 		}
 		// fill the last 3 if conditions with your Implementation - Muhab
-
-	}
-	// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)
+		
+	}*/
+	// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)	
 	if (Pos.GetCellNum() > NumHorizontalCells * NumVerticalCells)
 	{
 		pGrid->SetEndGame(true);

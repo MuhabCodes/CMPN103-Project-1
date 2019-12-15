@@ -128,6 +128,33 @@ Player * Grid::GetCurrentPlayer() const
 	return PlayerList[currPlayerNumber];
 }
 
+bool Grid::IsOverlapping(GameObject* newObj) const
+{
+	// represents the start hCell in the current row to search for the ladder in
+	for (int i = 0; i >= 0; i--) // searching from position.vCell and ABOVE
+	{
+		for (int j = 0; j < NumHorizontalCells; j++) // searching from startH and RIGHT
+		{
+			
+
+			if (CellList[i][j]->HasSnake())
+			{
+				newObj = (Snake*)CellList[i][j]->HasSnake();
+				(CellList[i][j]->HasSnake())->IsOverlapping(newObj);
+				return true;
+			}
+			else if (CellList[i][j]->HasLadder())
+			{
+				newObj = (Ladder*)CellList[i][j]->HasLadder();
+				(CellList[i][j]->HasLadder())->IsOverlapping(newObj);
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+
 Ladder * Grid::GetNextLadder(const CellPosition & position)
 {
 	
@@ -137,9 +164,12 @@ Ladder * Grid::GetNextLadder(const CellPosition & position)
 		for (int j = startH; j < NumHorizontalCells; j++) // searching from startH and RIGHT
 		{
 
-
 			///TODO: Check if CellList[i][j] has a ladder, if yes return it
 			
+			if (CellList[i][j]->HasLadder() != NULL)
+			{
+				return (Ladder*)(CellList[i][j])->GetGameObject();
+			}
 
 		}
 		startH = 0; // because in the next above rows, we will search from the first left cell (hCell = 0) to the right
@@ -147,6 +177,26 @@ Ladder * Grid::GetNextLadder(const CellPosition & position)
 	return NULL; // not found
 }
 
+Snake* Grid::GetNextSnake(const CellPosition& position)
+{
+	int startH = position.HCell(); // represents the start hCell in the current row to search for the ladder in
+	for (int i = position.VCell(); i >= 0; i--) // searching from position.vCell and ABOVE
+	{
+		for (int j = startH; j < NumHorizontalCells; j++) // searching from startH and RIGHT
+		{
+
+			//Check if CellList[i][j] has a Snake, if yes return it
+
+			if (CellList[i][j]->HasSnake() != NULL)
+			{
+				return NULL;
+			}
+
+		}
+		startH = 0; // because in the next above rows, we will search from the first left cell (hCell = 0) to the right
+	}
+	return NULL; // not found
+}
 
 // ========= User Interface Functions =========
 
@@ -198,6 +248,7 @@ void Grid::UpdateInterface() const
 		// In addition, cards/snakes/ladders do NOT change positions in Play Mode, so need to draw them here too
 	}
 }
+
 
 void Grid::PrintErrorMessage(string msg)
 {
