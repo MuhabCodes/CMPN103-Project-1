@@ -7,6 +7,8 @@ CardTwo::CardTwo(const CellPosition& pos) : Card(pos)
 
 CardTwo::~CardTwo() {}
 
+int CardTwo::walletAmount = 0;
+
 void CardTwo::ReadCardParameters(Grid* pGrid)
 {
 	Input* pIn = pGrid->GetInput(); // Input Pointer using Grid pointer
@@ -23,10 +25,8 @@ void CardTwo::ReadCardParameters(Grid* pGrid)
 void CardTwo::Apply(Grid* pGrid, Player* pPlayer)
 {
 
-	ReadCardParameters(pGrid);
-	// Apply card fn in base class Card
 
-	Card::Apply(pGrid, pPlayer);
+	// Apply card fn in base class Card
 
 	// Setting the player pointer to the current player to adjust their wallet
 
