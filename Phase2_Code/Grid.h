@@ -67,6 +67,8 @@ public:
 	
 	Player * GetCurrentPlayer() const;	// Gets a Pointer to the Current Player	                                    
 	Ladder * GetNextLadder(const CellPosition & position);  // Gets a Pointer to the first Ladder after the passed "position"
+	GameObject* GetGameObject(const CellPosition& position) const;
+	bool HasEnd(const CellPosition& position) const;
 
 	// ========= User Interface Functions =========
 

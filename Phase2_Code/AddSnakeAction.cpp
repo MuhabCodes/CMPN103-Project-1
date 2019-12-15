@@ -31,13 +31,8 @@ void AddSnakeAction::ReadActionParameters()
 
 
 	///TODO: Make the needed validations on the read parameters
-	if (startPos.HCell() != endPos.HCell())
-	{
-		pOut->PrintMessage("end cell and start cell are not in the same column");
-	}
-	if (startPos.VCell() )
 
-
+	
 	// Clear messages
 	pOut->ClearStatusBar();
 }
@@ -49,6 +44,20 @@ void AddSnakeAction::Execute()
 	Snake* pSnake = new Snake(startPos, endPos);
 
 	Grid* pGrid = pManager->GetGrid();
+
+	// verify that the start cell is above the end cell
+	if (startPos.VCell() >= endPos.VCell())
+	{
+		pGrid->PrintErrorMessage("Error: The Start cell must be under the End cell ! Click to continue ...");
+		return;
+	}
+
+	// verify that the start cell and the end cell are in the same column
+	if (startPos.HCell() != endPos.HCell())
+	{
+		pGrid->PrintErrorMessage("Error: The Start Cell and the End Cell must be in the same column ! Click to continue ...");
+		return;
+	}
 
 	bool added = pGrid->AddObjectToCell(pSnake);
 

@@ -11,12 +11,14 @@ Cell::Cell(const CellPosition & pos) : position(pos)
 {
 	// initializes the data members (position & pGameObject)
 	pGameObject = NULL;
+	HasObjectEnd = false;
 }
 
 Cell::Cell(int v, int h) : position(v, h)
 {
 	// initializes the data members (position & pGameObject)
 	pGameObject = NULL;
+	HasObjectEnd = false;
 }
 
 
@@ -62,6 +64,16 @@ Card * Cell::HasCard() const
 
 	return dynamic_cast<Card *>(pGameObject); // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
 
+}
+
+void Cell::SetEnd(bool hasEnd)
+{
+	HasObjectEnd = hasEnd;
+}
+
+bool Cell::HasEnd() const
+{
+	return HasObjectEnd;
 }
 
 
