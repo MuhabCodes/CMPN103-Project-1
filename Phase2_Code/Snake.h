@@ -24,6 +24,10 @@ public:
 
 	CellPosition GetEndPosition() const;
 
+	//Snake IsOverlapping()
+	
+
+
 	// Virtual Destructor 
 
 	virtual ~Snake();

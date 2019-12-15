@@ -13,6 +13,7 @@ class GameObject;
 class Ladder;
 class Card;
 class Player;
+class Snake;
 
 class Grid
 {
@@ -35,6 +36,8 @@ public:
 
 	Grid(Input * pIn, Output * pOut);	  // Gives the Grid a Pointer to the Output Object and the Input Object
 										  // and makes any needed initializations
+
+	bool IsOverlapping(GameObject* newObj) const;
 
 	// ========= Adding or Removing GameObjects to Cells =========
 
@@ -67,6 +70,7 @@ public:
 	
 	Player * GetCurrentPlayer() const;	// Gets a Pointer to the Current Player	                                    
 	Ladder * GetNextLadder(const CellPosition & position);  // Gets a Pointer to the first Ladder after the passed "position"
+	Snake * GetNextSnake(const CellPosition& position);
 	GameObject* GetGameObject(const CellPosition& position) const;
 	bool HasEnd(const CellPosition& position) const;
 

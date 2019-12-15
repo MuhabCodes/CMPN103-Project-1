@@ -9,6 +9,8 @@ CardOne::~CardOne(void)
 {
 }
 
+int CardOne::walletAmount = 0;
+
 void CardOne::ReadCardParameters(Grid * pGrid)
 {
 	
@@ -39,6 +41,7 @@ void CardOne::ReadCardParameters(Grid * pGrid)
 
 	pOut->ClearStatusBar();
 }
+
 
 void CardOne::Apply(Grid* pGrid, Player* pPlayer)
 {

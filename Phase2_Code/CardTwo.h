@@ -3,8 +3,9 @@
 class CardTwo : public Card
 
 {
+	// Static int to keep the increment wallet value consistent on all cells with CardTwo
 
-	int walletAmount; 
+	static int walletAmount; // the wallet value to increase from the player
 
 public:
 	CardTwo(const CellPosition& pos);
