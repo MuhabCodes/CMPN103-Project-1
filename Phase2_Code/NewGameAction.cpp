@@ -28,6 +28,7 @@ void NewGameAction::Execute()
 	Output* pOut = pGrid->GetOutput();
 	pOut->CreatePlayModeToolBar();
 	CellPosition pResetCell(8,0);
+	pGrid->SetEndGame(false);
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -40,7 +41,6 @@ void NewGameAction::Execute()
 		pPlayer->SetWallet(100);
 		pPlayer->SetTurnCount(0);
 		pPlayer->SetStepCount(0);
-
 		// Advance to next player;
 
 		pGrid->AdvanceCurrentPlayer();

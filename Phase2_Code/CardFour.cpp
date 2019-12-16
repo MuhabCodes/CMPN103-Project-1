@@ -14,21 +14,19 @@ CardFour::~CardFour()
 
 void CardFour::Apply(Grid* pGrid, Player* pPlayer)
 {
-	Card::Apply(pGrid, pPlayer);
+	Card::Apply(pGrid, pPlayer); 
 
-	CellPosition CP(pPlayer->GetStepCount());
+	CellPosition* pCellPosition = pPlayer->GetCell()->GetCellPosition()
 
-	Snake* nearest_snake = pGrid->GetNextSnake(CP);
-
-	if (nearest_snake == NULL)
+	if (pGrid->GetNextSnake(pCellPosition))
 	{
-		pGrid->PrintErrorMessage("No snakes ahead ! Click to continue ...");
-		return;
+		pGrid->UpdatePlayerCell(pPlayer, pCellPosition);
+		pGrid->GetNextSnake(pCellPosition)->Apply(pGrid, pPlayer);
+		pGrid->PrintErrorMessage("Player moved to the next snake ! Click to continue ...");
 	}
 	else
 	{
-		pGrid->UpdatePlayerCell(pPlayer, nearest_snake->GetPosition());
-		pGrid->PrintErrorMessage("Player moved to the next snake ! Click to continue ...");
+		pGrid->PrintErrorMessage("No snakes ahead ! Click to continue ...");
 	}
 }
 
