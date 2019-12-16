@@ -173,7 +173,7 @@ void Player::Move(Grid * pGrid, int diceNumber)
 			{
 				pCell->GetGameObject()->Apply(pGrid, this);
 			}
-
+			stepCount += diceNumber;
 			// 6- Apply() the game object of the reached cell (if any)
 
 			// pCell GetGameObject function returns false if there exists a game object
