@@ -22,14 +22,14 @@ void CardThirteen::ReadCardParameters(Grid* pGrid)
 
 	while (price <= 0)                                 //price validation
 	{
-		pOut->PrintMessage("CardTen: Enter its price value: ");
+		pOut->PrintMessage("New CardThirteen: Enter its price value: ");
 		price = pIn->GetInteger(pOut);
 	}
 
 
 	while (rent <= 0)                              //rent validations
 	{
-		pOut->PrintMessage("CardTen: Enter its rent value: ");
+		pOut->PrintMessage("New CardThirteen: Enter its rent value: ");
 		rent = pIn->GetInteger(pOut);
 	}
 
@@ -120,6 +120,16 @@ void CardThirteen::Apply(Grid* pGrid, Player* pPlayer)
 	Card::Apply(pGrid, pPlayer);
 	buy(pGrid, pPlayer);
 	pay(pGrid, pPlayer);
+}
+
+void CardThirteen::Save(ofstream& OutFile, GameObjectType Type)
+{
+	Card::Save(OutFile, Type);
+	if (Type != CARD)
+	{
+		return;
+	}
+	OutFile << ' ' << price << ' ' << rent << endl;
 }
 
 CardThirteen::~CardThirteen()

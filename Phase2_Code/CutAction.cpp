@@ -35,7 +35,7 @@ void CutAction::ReadActionParameters()
 void CutAction::Execute()
 {
 	ReadActionParameters();
-	Grid* pGrid;
+	Grid* pGrid = pManager->GetGrid();
 	pGrid->SetClipboard(cuttedCard);
 }
 

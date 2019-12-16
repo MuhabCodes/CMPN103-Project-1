@@ -17,6 +17,7 @@ void Input::GetPointClicked(int &x, int &y) const
 {
 	pWind->WaitMouseClick(x, y); // Note: x and y of WaitMouseClick are sent by reference
 	pWind->FlushKeyQueue();
+	pWind->FlushMouseQueue();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////// 
@@ -39,6 +40,7 @@ string Input::GetString(Output *pO) const
 		if (pO)
 			pO->PrintMessage(Label);
 	}
+	pWind->FlushKeyQueue();
 	pWind->FlushMouseQueue();
 }
 
@@ -83,6 +85,7 @@ int Input::GetInteger(Output *pO) const
 			}
 		}
 	}
+	pWind->FlushKeyQueue();
 	pWind->FlushMouseQueue();
 	return stoi(S); // this line should be changed with your implementation
 }
@@ -170,6 +173,9 @@ ActionType Input::GetUserAction() const
 
 	}	
 
+	pWind->FlushKeyQueue();
+	pWind->FlushMouseQueue();
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////// 
@@ -202,6 +208,8 @@ CellPosition Input::GetCellClicked() const
 		}
 	}
 
+	pWind->FlushKeyQueue();
+	pWind->FlushMouseQueue();
 	return cellPos;
 }
 

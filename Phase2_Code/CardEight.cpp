@@ -18,6 +18,16 @@ void CardEight::Apply(Grid* pGrid, Player* pPlayer)
 
 }
 
+void CardEight::Save(ofstream& OutFile, GameObjectType Type)
+{
+	Card::Save(OutFile, Type);
+	if (Type != CARD)
+	{
+		return;
+	}
+	OutFile << endl;
+}
+
 CardEight::~CardEight()
 {
 	// Virtual void destructor

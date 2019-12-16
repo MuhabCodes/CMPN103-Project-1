@@ -3,10 +3,8 @@
 class CopyAction :
 	public Action
 {
-	Grid* pGrid;
-	Card * pCard;
-	int copiedCardNumber;            
-	CellPosition copiedCardPosition;
+	
+	Card* copiedCard;
 
 public:
 	CopyAction(ApplicationManager * pApp); // 

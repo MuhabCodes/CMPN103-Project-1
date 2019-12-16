@@ -17,7 +17,7 @@ void CardThree::Apply(Grid * pGrid, Player * pPlayer)
 {
 	Card::Apply(pGrid, pPlayer);
 
-	CellPosition* pCellPosition = pPlayer->GetCell()->GetCellPosition();
+	CellPosition pCellPosition = pPlayer->GetCell()->GetCellPosition();
 
 	if (pGrid->GetNextLadder(pCellPosition)) 
 	{

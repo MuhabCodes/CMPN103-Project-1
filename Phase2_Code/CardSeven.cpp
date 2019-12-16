@@ -19,6 +19,16 @@ void CardSeven::Apply(Grid* pGrid, Player* pPlayer)
 	
 }
 
+void CardSeven::Save(ofstream& OutFile, GameObjectType Type)
+{
+	Card::Save(OutFile, Type);
+	if (Type != CARD)
+	{
+		return;
+	}
+	OutFile << endl;
+}
+
 CardSeven::~CardSeven()
 {
 

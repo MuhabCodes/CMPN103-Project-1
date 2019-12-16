@@ -3,23 +3,28 @@
 CardTwo::CardTwo(const CellPosition& pos) : Card(pos)
 {
 	cardNumber = 2;
+	initial = false;
 }
 
 CardTwo::~CardTwo() {}
 
 int CardTwo::walletAmount = 0;
+bool CardTwo::initiated = false;
 
 void CardTwo::ReadCardParameters(Grid* pGrid)
 {
-	Input* pIn = pGrid->GetInput(); // Input Pointer using Grid pointer
-	Output* pOut = pGrid->GetOutput();  // Output Pointer using Grid pointer
-	pOut->PrintMessage("New CardTwo: Enter it's wallet amount: "); // Display Message for user to enter wallet value
-	walletAmount = pIn->GetInteger(pOut); // Value of Wallet Amount entered by the user
+	if (!initiated)
+	{
+		Input* pIn = pGrid->GetInput(); // Input Pointer using Grid pointer
+		Output* pOut = pGrid->GetOutput();  // Output Pointer using Grid pointer
+		pOut->PrintMessage("New CardTwo: Enter it's wallet amount: "); // Display Message for user to enter wallet value
+		walletAmount = pIn->GetInteger(pOut); // Value of Wallet Amount entered by the user
+		initiated = true;
+		initial = true;
 
-	// Clear any message 
-
-	pOut->ClearStatusBar();
-
+		// Clear any message 
+		pOut->ClearStatusBar();
+	}
 }
 
 void CardTwo::Apply(Grid* pGrid, Player* pPlayer)

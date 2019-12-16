@@ -30,6 +30,7 @@ public:
 	void pay(Grid* pGrid, Player* pPlayer);                           //decrements the rent value from the passing player
 	virtual void Apply(Grid* pGrid, Player* pPlayer);                // Applies the effect of CardTen on the passed Player
 	virtual ~CardThirteen();                                             // A Virtual Destructor
+	virtual void Save(ofstream& OutFile, GameObjectType Type);
 
 };
 

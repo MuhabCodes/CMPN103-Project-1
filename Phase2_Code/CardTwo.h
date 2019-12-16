@@ -6,6 +6,8 @@ class CardTwo : public Card
 	// Static int to keep the increment wallet value consistent on all cells with CardTwo
 
 	static int walletAmount; // the wallet value to increase from the player
+	static bool initiated;
+	bool initial;
 
 public:
 	CardTwo(const CellPosition& pos);

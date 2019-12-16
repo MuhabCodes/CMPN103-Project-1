@@ -12,17 +12,23 @@ CopyAction::CopyAction(ApplicationManager * pApp):Action(pApp)
 
 void CopyAction::ReadActionParameters()
 {
-	Grid* pGrid = pManager->GetGrid();
+	Grid * pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 
 	pOut->PrintMessage("Click on the source cell.");
+	CellPosition copiedCardPosition;
 	copiedCardPosition = pIn->GetCellClicked();
-	Cell c(copiedCardPosition);
-	if (c.HasCard()) {
+	Cell cell(copiedCardPosition);
+	
+	if (cell.HasCard()) {
 		
-		Card copiedCard(copiedCardPosition);
-		copiedCardNumber = copiedCard.GetCardNumber();
+		Card* card = cell.HasCard();
+
+		copiedCardPosition = card->GetPosition();
+		card->GetCardNumber();
+
+		copiedCard = card;
 	}
 	else
 		return;
@@ -33,9 +39,9 @@ void CopyAction::ReadActionParameters()
 void CopyAction::Execute()
 {
 	ReadActionParameters();
-	
-	pCard->SetCardNumber(copiedCardNumber);
-	pGrid->SetClipboard(pCard);
+	Grid* pGrid; 
+
+	pGrid->SetClipboard(copiedCard);
 }
 
 CopyAction::~CopyAction()

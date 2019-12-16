@@ -3,8 +3,9 @@
 
 class CardNine :public Card
 {	
-
-	CellPosition cellpos;
+	static CellPosition cellpos;
+	static bool initiated;
+	bool initial;
 
 public:
 
@@ -13,6 +14,8 @@ public:
 	virtual void Apply(Grid* pGrid, Player* pPlayer);
 
 	virtual void ReadCardParameters(Grid * pGrid);
+
+	virtual void Save(ofstream& OutFile, GameObjectType Type);
 	
 	~CardNine();
 };

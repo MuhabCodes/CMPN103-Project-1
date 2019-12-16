@@ -1,25 +1,42 @@
 #include "CardNine.h"
 
-
+CellPosition CardNine::cellpos = CellPosition(1);
+bool CardNine::initiated = false;
 
 CardNine::CardNine(const CellPosition& pos) : Card(pos)
 {
 	cardNumber = 9;
+	initial = false;
 }
 
 void CardNine::ReadCardParameters(Grid * pGrid) 
 {
-	Input* pIn = pGrid->GetInput();
-	Output* pOut = pGrid->GetOutput();
-	pOut->PrintMessage("Choose a cell: ");
-	cellpos = pIn->GetCellClicked();
-	pOut->ClearStatusBar();
+	if (!initiated)
+	{
+		Input* pIn = pGrid->GetInput();
+		Output* pOut = pGrid->GetOutput();
+		pOut->PrintMessage("New CardNine: Click on its destination cell ... ");
+		cellpos = pIn->GetCellClicked();
+		initiated = true;
+		initial = true;
+		pOut->ClearStatusBar();
+	}
 }
 void CardNine:: Apply(Grid* pGrid, Player* pPlayer)
 {
 	Card::Apply(pGrid, pPlayer);
 	pGrid->UpdatePlayerCell(pPlayer, cellpos);
 	pGrid->UpdateInterface();
+}
+
+void CardNine::Save(ofstream& OutFile, GameObjectType Type)
+{
+	Card::Save(OutFile, Type);
+	if (Type != CARD)
+	{
+		return;
+	}
+	OutFile << ' ' << cellpos.GetCellNum() << endl;
 }
 
 CardNine::~CardNine()

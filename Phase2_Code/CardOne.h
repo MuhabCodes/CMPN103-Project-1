@@ -13,6 +13,8 @@ class CardOne :	public Card
 	// Static int to keep the decrement wallet value consistent on all cells with CardTwo 
 	
 	static int walletAmount; // the wallet value to decrease from the player
+	static bool initiated;
+	bool initial;
 
 public:
 
