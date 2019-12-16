@@ -193,9 +193,6 @@
     <ClCompile Include="CardTwo.cpp">
       <Filter>GameObjects\Cards</Filter>
     </ClCompile>
-    <ClCompile Include="InputDiceValue.cpp">
-      <Filter>Actions</Filter>
-    </ClCompile>
     <ClCompile Include="ToPlayModeAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
@@ -222,6 +219,12 @@
     </ClCompile>
     <ClCompile Include="CardFourteen.cpp">
       <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="InputDiceValueAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="NewGameAction.cpp">
+      <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -343,9 +346,6 @@
     <ClInclude Include="CardTwo.h">
       <Filter>GameObjects\Cards</Filter>
     </ClInclude>
-    <ClInclude Include="InputDiceValue.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
     <ClInclude Include="ToPlayModeAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
@@ -372,6 +372,12 @@
     </ClInclude>
     <ClInclude Include="CardFourteen.h">
       <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="InputDiceValueAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="NewGameAction.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

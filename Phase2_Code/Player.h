@@ -23,16 +23,24 @@ public:
 
 	// ====== Setters and Getters ======
 
-	void SetCell(Cell * cell);		// A setter for the pCell
-	Cell* GetCell() const;			// A getter for the pCell
+	void SetCell(Cell * cell);		// A setter for pCell
+	Cell* GetCell() const;			// A getter for pCell
 
-	void SetWallet(int wallet);		// A setter for the wallet
-	int GetWallet() const;			// a getter for the wallet
+	void SetWallet(int wallet);		// A setter for wallet
+	int GetWallet() const;			// a getter for wallet
 
-	int GetTurnCount() const;		// A getter for the turnCount
+	void SetTurnCount(int turnCount);		// A setter for turnCount
+	int GetTurnCount() const;		// A getter for turnCount
+
+	void SetStepCount(int);		// A setter for stepCount
+	int GetstepCount() const;		// A getter for stepCount
+
+	int GetPlayerNum() const;		// A getter for playerNum
 
 	///TODO: You can add setters and getters for data members here (if needed)
-	int GetstepCount() const;
+	
+
+	
 	// ====== Drawing Functions ======
 
 	void Draw(Output* pOut) const;			// Draws the Player's Circle on its current cell

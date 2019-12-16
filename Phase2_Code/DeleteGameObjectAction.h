@@ -1,7 +1,6 @@
 #pragma once
 #include "Action.h"
-class DeleteGameObjectAction :
-	public Action
+class DeleteGameObjectAction :public Action
 {
 	CellPosition objPos;
 public:
