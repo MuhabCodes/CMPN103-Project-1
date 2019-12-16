@@ -193,6 +193,11 @@ void Player::Move(Grid * pGrid, int diceNumber)
 			}
 		} while (AnotherDiceRoll);
 	}
+	else 
+	{
+		SetWallet(GetWallet() + diceNumber * 10);
+		justRolledDiceNum = diceNumber;
+	}
 }
 
 void Player::AppendPlayerInfo(string & playersInfo) const
