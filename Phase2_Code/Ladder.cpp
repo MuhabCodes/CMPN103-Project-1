@@ -45,6 +45,29 @@ CellPosition Ladder::GetEndPosition() const
 	return endCellPos;
 }
 
+bool Ladder::IsOverlapping(GameObject* newObj) const
+{
+	Ladder* newLadder = dynamic_cast<Ladder*>(newObj);
+	if (newLadder)
+	{
+		CellPosition newPos = newLadder->GetPosition();
+		CellPosition newEndPos = newLadder->GetEndPosition();
+		if (newPos.HCell() != position.HCell())
+		{
+			return false;
+		}
+		if (position.VCell() > newPos.VCell())
+		{
+			return (endCellPos.VCell() < newPos.VCell());
+		}
+		else
+		{
+			return (position.VCell() > newEndPos.VCell());
+		}
+	}
+	return false;
+}
+
 Ladder::~Ladder()
 {
 }

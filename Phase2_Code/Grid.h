@@ -69,8 +69,11 @@ public:
 	// ========= Other Getters =========
 	
 	Player * GetCurrentPlayer() const;	// Gets a Pointer to the Current Player	                                    
+	GameObject* GetGameObject(const CellPosition& position) const;
 	Ladder * GetNextLadder(const CellPosition & position);  // Gets a Pointer to the first Ladder after the passed "position"
 	Snake * GetNextSnake(const CellPosition& position);
+	bool HasEnd(const CellPosition& position) const;
+	void SetEnd(const CellPosition& position, bool B);
 
 	// ========= User Interface Functions =========
 

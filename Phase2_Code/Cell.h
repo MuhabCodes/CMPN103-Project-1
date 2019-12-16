@@ -18,6 +18,7 @@ class Cell
 
 	GameObject * pGameObject;       // a pointer to the GameObject existing in the Cell (if any)
 	                                // if no GameObject in this Cell, pGameObject should be NULL
+	bool hasObjectEnd;
 
 public:
 
@@ -35,6 +36,8 @@ public:
 	Ladder * HasLadder() const;	// Checks if pGameObject is a Ladder Then returns it if a ladder or returns NULL if not ladder
 	Snake * HasSnake() const;	// Checks if pGameObject is a Snake Then returns it if a snake or returns NULL if not snake
 	Card * HasCard() const;	    // Checks if pGameObject is a Card Then returns it if a card or returns NULL if not card
+	bool HasEnd() const;
+	void SetEnd(bool B);
 	
 	// ======= Drawing Functions ======= 
 

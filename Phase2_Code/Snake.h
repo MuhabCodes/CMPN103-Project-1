@@ -26,7 +26,7 @@ public:
 
 	//Snake IsOverlapping()
 	
-
+	virtual bool IsOverlapping(GameObject* newObj) const;
 
 	// Virtual Destructor 
 
