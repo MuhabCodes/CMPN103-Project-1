@@ -1,6 +1,7 @@
 #include "Player.h"
 
 #include "GameObject.h"
+#include "Card.h"
 
 Player::Player(Cell * pCell, int playerNum) : stepCount(0), wallet(100), playerNum(playerNum)
 {
@@ -73,6 +74,11 @@ int Player::GetPlayerNum() const
 	return playerNum;
 }
 
+void Player::SetIsPrevented(bool change)
+{
+	IsPrevented = change;
+}
+
 
 // ====== Drawing Functions ======
 
@@ -119,6 +125,13 @@ void Player::Move(Grid * pGrid, int diceNumber)
 
 	//turnCount reset and wallet incrementer
 	
+	if (IsPrevented)
+	{
+		IsPrevented = false;
+		return;
+	}
+
+
 	if (GetTurnCount() == 3)
 	{
 		turnCount = 0;
@@ -156,11 +169,12 @@ void Player::Move(Grid * pGrid, int diceNumber)
 	// therefore we can use it in the implementation of the function 
 	// -Muhab
 
-	
+
+
 	// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)	
 	
-	if ( stepCount > NumHorizontalCells * NumVerticalCells)
-	{
+	if ( pCell->GetCellPosition().GetCellNum() == 99 )
+	{	
 		pGrid->SetEndGame(true);
 	}
 }

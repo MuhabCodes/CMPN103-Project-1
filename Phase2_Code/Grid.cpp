@@ -115,6 +115,11 @@ bool Grid::GetEndGame() const
 	return endGame;
 }
 
+void Grid::SetCurrentPlayerNumber(int num)
+{
+	currPlayerNumber = num;
+}
+
 void Grid::AdvanceCurrentPlayer()
 {
 	currPlayerNumber = (currPlayerNumber + 1) % MaxPlayerCount; // this generates value from 0 to MaxPlayerCount - 1

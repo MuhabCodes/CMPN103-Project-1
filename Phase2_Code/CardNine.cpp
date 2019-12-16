@@ -11,7 +11,7 @@ void CardNine::ReadCardParameters(Grid * pGrid)
 {
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
-	pOut->PrintMessage("Choose a cell ");
+	pOut->PrintMessage("Choose a cell: ");
 	cellpos = pIn->GetCellClicked();
 	pOut->ClearStatusBar();
 }

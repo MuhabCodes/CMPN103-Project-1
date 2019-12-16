@@ -10,6 +10,10 @@ class Player
 	const int playerNum;   // the player number (from 0 to MaxPlayerCount-1)
 	                       // player number does NOT change after construction (const.)
 
+	bool IsPrevented;      //  bool added to prevent player movement in CardEight
+
+	// Might add similar bools for bonus super attacks;
+
 	int stepCount;		   // step count which is the same as his cellNum: from 1 to NumVerticalCells*NumHorizontalCells
 	int wallet;		       // player's wallet (how many coins he has -- integer)
 	int justRolledDiceNum; // the current dice number which is just rolled by the player
@@ -38,6 +42,8 @@ public:
 	int GetDiceNum() const;
 
 	int GetPlayerNum() const;		// A getter for playerNum
+
+	void SetIsPrevented(bool);		// A setter for IsPrevented
 
 	///TODO: You can add setters and getters for data members here (if needed)
 	

@@ -10,23 +10,23 @@
     <Filter Include="Player">
       <UniqueIdentifier>{993adb1b-e6f5-4951-a441-ab84b1ccd65b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ApplicationManager">
-      <UniqueIdentifier>{00edee6d-09c6-41dc-9411-2fe37dad3b78}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Actions">
       <UniqueIdentifier>{72a541cf-9f7b-454d-9d2c-6ba376f60ef7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Grid">
       <UniqueIdentifier>{0812da86-d7b1-4314-a6f2-b14accc8e412}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUIClasses">
+      <UniqueIdentifier>{03fd4e0d-92e0-4271-bb9b-d6e9f21ec35f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ApplicationManager">
+      <UniqueIdentifier>{00edee6d-09c6-41dc-9411-2fe37dad3b78}</UniqueIdentifier>
+    </Filter>
     <Filter Include="GameObjects">
       <UniqueIdentifier>{c61abd84-e3da-41ae-a86c-6d797be2f1dc}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameObjects\Cards">
       <UniqueIdentifier>{28af86b7-026e-44cd-b907-8de0d89f27ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GUIClasses">
-      <UniqueIdentifier>{03fd4e0d-92e0-4271-bb9b-d6e9f21ec35f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +235,12 @@
     <ClCompile Include="CardNine.cpp">
       <Filter>GameObjects\Cards</Filter>
     </ClCompile>
+    <ClCompile Include="CardEight.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardSeven.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -396,6 +402,12 @@
       <Filter>GameObjects\Cards</Filter>
     </ClInclude>
     <ClInclude Include="CardNine.h">
+      <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardEight.h">
+      <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardSeven.h">
       <Filter>GameObjects\Cards</Filter>
     </ClInclude>
   </ItemGroup>

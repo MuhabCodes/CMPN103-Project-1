@@ -3,7 +3,7 @@
 #include "Grid.h"
 #include "Player.h"
 #include "NewGameAction.h"
-
+#include "Card.h"
 #include <time.h> // used to in srand to generate random numbers with different seed
 
 RollDiceAction::RollDiceAction(ApplicationManager *pApp) : Action(pApp)
@@ -43,17 +43,19 @@ void RollDiceAction::Execute()
 	//Using bool function GetEndGame to declare True/False for the if condition
 
 	bool flag = pGrid->GetEndGame();
+	
 
 	if (!flag)
 	{
-
-		srand((int)time(NULL)); // time is for different seed each run
-		int diceNumber = 1 + rand() % 6; // from 1 to 6 --> should change seed
-		pOut->PrintMessage("You just rolled " + to_string(diceNumber) + " ");
-		Player* pPlayer = pGrid->GetCurrentPlayer(); // step 3 - getting current player
-		pPlayer->Move(pGrid, diceNumber); // step 4 - moving current player using Move fn
-		pGrid->AdvanceCurrentPlayer(); // step 5 - Advancing to next player
-
+		do
+		{
+			srand((int)time(NULL)); // time is for different seed each run
+			int diceNumber = 1 + rand() % 6; // from 1 to 6 --> should change seed
+			pOut->PrintMessage("You just rolled " + to_string(diceNumber) + " ");
+			Player* pPlayer = pGrid->GetCurrentPlayer(); // step 3 - getting current player
+			pPlayer->Move(pGrid, diceNumber); // step 4 - moving current player using Move fn
+			pGrid->AdvanceCurrentPlayer(); // step 5 - Advancing to next player
+		} while (false);
 	}
 	else
 	{
