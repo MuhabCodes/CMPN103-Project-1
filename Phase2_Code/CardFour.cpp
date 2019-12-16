@@ -14,17 +14,18 @@ CardFour::~CardFour()
 
 void CardFour::Apply(Grid* pGrid, Player* pPlayer)
 {
-	int x;
-	int y;
-	Input* pIn = pGrid->GetInput();
-	Output* pOut = pGrid->GetOutput();
+	Card::Apply(pGrid, pPlayer); 
 
-	Card::Apply(pGrid, pPlayer);
-	CellPosition CP(pPlayer->GetStepCount());
-	Snake* nearest_snake = pGrid->GetNextSnake(CP);
-	if (nearest_snake != NULL)
-		CP = nearest_snake->GetPosition();
+	Cell* pCell = NULL;
+	pCell = pPlayer->GetCell();
+	CellPosition pCellPosition;
+	pCellPosition = pCell->GetCellPosition();
 
-	pPlayer->SetStepCount(CP.GetCellNum());
+	if (pGrid->GetNextSnake(pCellPosition))
+	{
+		pGrid->UpdatePlayerCell(pPlayer, pGrid->GetNextSnake(pCellPosition)->GetPosition());
+
+		pGrid->GetNextSnake(pCellPosition)->Apply(pGrid, pPlayer);
+	}
 }
 

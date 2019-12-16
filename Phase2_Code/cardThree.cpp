@@ -1,10 +1,10 @@
 #include "CardThree.h"
 
 #include "Ladder.h"
+#include "Grid.h"
 
-CardThree::CardThree( const CellPosition & Pos): Card(Pos)
+CardThree::CardThree(const CellPosition & Pos): Card(Pos)
 {
-	
 	cardNumber = 3;
 }
 
@@ -15,37 +15,17 @@ CardThree::~CardThree()
 
 void CardThree::Apply(Grid * pGrid, Player * pPlayer)
 {
-	
-	Input* pIn = NULL;
-	pIn = pGrid->GetInput();
-
-	Output* pOut = NULL;
-	pOut = pGrid->GetOutput();
-
-	int x, y;
-
-	pOut->PrintMessage("Moves the player forward to the start of the next ladder");
-	pIn->GetCellClicked();
-	
 	Card::Apply(pGrid, pPlayer);
 
-	CellPosition cp(pPlayer->GetStepCount());
+	Cell* pCell = NULL;
+	pCell = pPlayer->GetCell();
+	CellPosition pCellPosition;
+	pCellPosition = pCell->GetCellPosition();
 
-	Ladder* nearest_ladder = pGrid->GetNextLadder(cp);
-
-	if (nearest_ladder == NULL)
+	if (pGrid->GetNextLadder(pCellPosition)) 
 	{
-		return;
+		pGrid->UpdatePlayerCell(pPlayer, pGrid->GetNextLadder(pCellPosition)->GetPosition());
+
+		pGrid->GetNextLadder(pCellPosition)->Apply(pGrid, pPlayer);
 	}
-	else
-	{
-		//pPlayer->SetStepCount(cp.GetCellNum());
-		pGrid->UpdatePlayerCell(pPlayer, nearest_ladder->GetPosition());
-	}
-	/*Cell c();
-
-	if (pPlayer->GetCell()->HasLadder() != NULL) 
-	{
-		pPlayer->SetCell(&c);
-	}*/
 }
