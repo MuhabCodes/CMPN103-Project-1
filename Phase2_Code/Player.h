@@ -12,6 +12,8 @@ class Player
 
 	bool IsPrevented;      //  bool added to prevent player movement in CardEight
 
+	bool AnotherDiceRoll;   // bool added to give player an extra roll for CardSeven
+
 	// Might add similar bools for bonus super attacks;
 
 	int stepCount;		   // step count which is the same as his cellNum: from 1 to NumVerticalCells*NumHorizontalCells
@@ -36,14 +38,16 @@ public:
 	void SetTurnCount(int turnCount);		// A setter for turnCount
 	int GetTurnCount() const;		// A getter for turnCount
 
-	void SetStepCount(int);		// A setter for stepCount
+	void SetStepCount(int stepCount);		// A setter for stepCount
 	int GetstepCount() const;		// A getter for stepCount
 
 	int GetDiceNum() const;
 
 	int GetPlayerNum() const;		// A getter for playerNum
 
-	void SetIsPrevented(bool);		// A setter for IsPrevented
+	void SetIsPrevented(bool IsPrevented);		// A setter for IsPrevented
+
+	void SetAnotherDiceRoll(bool AnotherDiceRoll);
 
 	///TODO: You can add setters and getters for data members here (if needed)
 	

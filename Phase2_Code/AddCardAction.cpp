@@ -8,7 +8,7 @@
 //#include "CardFour.h"
 #include "CardFive.h"
 #include "CardSix.h"
-//#include "CardSeven.h"
+#include "CardSeven.h"
 #include "CardEight.h"
 #include "CardNine.h"
 #include "CardTen.h"
@@ -105,9 +105,9 @@ void AddCardAction::Execute()
 	case 6:
 		pCard = new CardSix(cardPosition);
 		break;
-	//case 7:
-	//	pCard = new CardSeven(cardPosition);
-	//	break;
+	case 7:
+		pCard = new CardSeven(cardPosition);
+		break;
 	case 8:
 		pCard = new CardEight(cardPosition);
 		break;

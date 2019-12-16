@@ -12,6 +12,11 @@ void CardSeven::Apply(Grid* pGrid, Player* pPlayer)
 
 	Card::Apply(pGrid, pPlayer);
 
+	pPlayer = pGrid->GetCurrentPlayer();
+
+	pPlayer->SetAnotherDiceRoll(true);
+
+	
 }
 
 CardSeven::~CardSeven()
