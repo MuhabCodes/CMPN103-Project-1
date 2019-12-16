@@ -41,6 +41,11 @@ void Card::Apply(Grid* pGrid, Player* pPlayer)
 	pGrid->PrintErrorMessage("You have reached card " + to_string(cardNumber) + ". Click to continue ...");
 }
 
+bool Card::IsOverlapping(GameObject* newObj) const
+{
+	return false;
+}
+
 Card::~Card()
 {
 }

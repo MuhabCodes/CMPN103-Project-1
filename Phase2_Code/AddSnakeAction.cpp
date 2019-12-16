@@ -21,11 +21,11 @@ void AddSnakeAction::ReadActionParameters()
 	Input* pIn = pGrid->GetInput();
 
 	// Read the startPos parameter
-	pOut->PrintMessage("New Ladder: Click on its Start Cell ...");
+	pOut->PrintMessage("New Snake: Click on its Start Cell ...");
 	startPos = pIn->GetCellClicked();
 
 	// Read the endPos parameter
-	pOut->PrintMessage("New Ladder: Click on its End Cell ...");
+	pOut->PrintMessage("New Snake: Click on its End Cell ...");
 	endPos = pIn->GetCellClicked();
 
 
@@ -59,11 +59,33 @@ void AddSnakeAction::Execute()
 		return;
 	}
 
+	if (pGrid->GetGameObject(startPos))
+	{
+		pGrid->PrintErrorMessage("Error: The Start Cell cannot be the Start Cell of another object ! Click to continue ...");
+		return;
+	}
+
+	if (pGrid->HasEnd(startPos))
+	{
+		pGrid->PrintErrorMessage("Error: The Start Cell cannot be the End Cell of another object ! Click to continue ...");
+		return;
+	}
+
+	if (pGrid->GetGameObject(endPos))
+	{
+		pGrid->PrintErrorMessage("Error: The End Cell cannot be the Start Cell of another object ! Click to continue ...");
+		return;
+	}
+
 	bool added = pGrid->AddObjectToCell(pSnake);
 
-	if (! added)
+	if (added)
+	{
+		pGrid->SetEnd(endPos, true);
+	}
+	else
 	{
 		// Print an appropriate message
-		pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+		pGrid->PrintErrorMessage("Error: Two snakes cannot overlap ! Click to continue ...");
 	}
 }

@@ -16,8 +16,6 @@ public:
 	
 	CellPosition GetPosition() const;     // A Getter for position
 
-	virtual bool IsOverlapping(GameObject* newObj) const;
-
 	// ============ Virtual Functions ============
 
 	virtual void Draw(Output* pOut) const = 0;	 // Draws the game object in the window in his position cell 
@@ -34,6 +32,8 @@ public:
 	
 	//virtual void Save(ofstream &OutFile) = 0;	// Saves the GameObject parameters to the file
 	//virtual void Load(ifstream &Infile) = 0;	// Loads and Reads the GameObject parameters from the file
+
+	virtual bool IsOverlapping(GameObject* newObj) const = 0;
 
 	virtual ~GameObject(); // Virtual destructor
 };

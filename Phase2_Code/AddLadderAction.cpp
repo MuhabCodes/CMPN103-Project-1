@@ -65,14 +65,36 @@ void AddLadderAction::Execute()
 		return;
 	}
 
+	if (pGrid->GetGameObject(startPos))
+	{
+		pGrid->PrintErrorMessage("Error: The Start Cell cannot be the Start Cell of another object ! Click to continue ...");
+		return;
+	}
+
+	if (pGrid->HasEnd(startPos))
+	{
+		pGrid->PrintErrorMessage("Error: The Start Cell cannot be the End Cell of another object ! Click to continue ...");
+		return;
+	}
+
+	if (pGrid->GetGameObject(endPos))
+	{
+		pGrid->PrintErrorMessage("Error: The End Cell cannot be the Start Cell of another object ! Click to continue ...");
+		return;
+	}
+
 	// Add the card object to the GameObject of its Cell:
 	bool added = pGrid->AddObjectToCell(pLadder);
 
-	// if the GameObject cannot be added
-	if (! added)
+	// Flag end cell if added
+	if (added)
+	{
+		pGrid->SetEnd(endPos, true);
+	}
+	else
 	{
 		// Print an appropriate message
-		pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+		pGrid->PrintErrorMessage("Error: Two ladders cannot overlap ! Click to continue ...");
 	}
 	// Here, the ladder is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
 

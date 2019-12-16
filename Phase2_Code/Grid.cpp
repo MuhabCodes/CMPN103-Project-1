@@ -50,6 +50,11 @@ bool Grid::AddObjectToCell(GameObject * pNewObject)  // think if any validation 
 		if( pPrevObject)  // the cell already contains a game object
 			return false; // do NOT add and return false
 
+		if (IsOverlapping(pNewObject))
+		{
+			return false;
+		}
+
 		// Set the game object of the Cell with the new game object
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(pNewObject);
 		return true; // indicating that addition is done
@@ -135,30 +140,21 @@ Player * Grid::GetCurrentPlayer() const
 
 bool Grid::IsOverlapping(GameObject* newObj) const
 {
-	// represents the start hCell in the current row to search for the ladder in
-	for (int i = 0; i >= 0; i--) // searching from position.vCell and ABOVE
+	for (int i = 0; i < NumVerticalCells; i++)
 	{
-		for (int j = 0; j < NumHorizontalCells; j++) // searching from startH and RIGHT
+		GameObject* currentObj = CellList[i][newObj->GetPosition().HCell()]->GetGameObject();
+		if (newObj->IsOverlapping(currentObj))
 		{
-			
-
-			if (CellList[i][j]->HasSnake())
-			{
-				newObj = (Snake*)CellList[i][j]->HasSnake();
-				(CellList[i][j]->HasSnake())->IsOverlapping(newObj);
-				return true;
-			}
-			else if (CellList[i][j]->HasLadder())
-			{
-				newObj = (Ladder*)CellList[i][j]->HasLadder();
-				(CellList[i][j]->HasLadder())->IsOverlapping(newObj);
-				return true;
-			}
+			return true;
 		}
 	}
 	return false;
 }
 
+GameObject* Grid::GetGameObject(const CellPosition& position) const
+{
+	return CellList[position.VCell()][position.HCell()]->GetGameObject();
+}
 
 Ladder * Grid::GetNextLadder(const CellPosition & position)
 {
@@ -203,6 +199,16 @@ Snake* Grid::GetNextSnake(const CellPosition& position)
 		startH = 0; // because in the next above rows, we will search from the first left cell (hCell = 0) to the right
 	}
 	return NULL; // not found
+}
+
+bool Grid::HasEnd(const CellPosition& position) const
+{
+	return CellList[position.VCell()][position.HCell()]->HasEnd();
+}
+
+void Grid::SetEnd(const CellPosition& position, bool B)
+{
+	CellList[position.VCell()][position.HCell()]->SetEnd(B);
 }
 
 

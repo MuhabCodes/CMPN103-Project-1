@@ -49,6 +49,29 @@ CellPosition Snake::GetEndPosition() const
 	return endCellPos;
 }
 
+bool Snake::IsOverlapping(GameObject* newObj) const
+{
+	Snake* newSnake = dynamic_cast<Snake*>(newObj);
+	if (newSnake)
+	{
+		CellPosition newPos = newSnake->GetPosition();
+		CellPosition newEndPos = newSnake->GetEndPosition();
+		if (newPos.HCell() != position.HCell())
+		{
+			return false;
+		}
+		if (position.VCell() < newPos.VCell())
+		{
+			return (endCellPos.VCell() > newPos.VCell());
+		}
+		else
+		{
+			return (position.VCell() < newEndPos.VCell());
+		}
+	}
+	return false;
+}
+
 Snake::~Snake()
 {
 	// Virtual Snake Destructor
