@@ -35,6 +35,8 @@ public:
 	void SetStepCount(int);		// A setter for stepCount
 	int GetstepCount() const;		// A getter for stepCount
 
+	int GetDiceNum() const;
+
 	int GetPlayerNum() const;		// A getter for playerNum
 
 	///TODO: You can add setters and getters for data members here (if needed)
