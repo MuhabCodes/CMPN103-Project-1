@@ -47,10 +47,5 @@ void NewGameAction::Execute()
 
 	}
 
-	for (int i = 0; pGrid->GetCurrentPlayer()->GetPlayerNum() == 0; i++)
-	{
-		pGrid->AdvanceCurrentPlayer();
-	}
-
 	pGrid->UpdateInterface();
 }
