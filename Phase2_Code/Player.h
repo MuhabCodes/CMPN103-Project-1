@@ -10,6 +10,12 @@ class Player
 	const int playerNum;   // the player number (from 0 to MaxPlayerCount-1)
 	                       // player number does NOT change after construction (const.)
 
+	bool IsPrevented;      //  bool added to prevent player movement in CardEight
+
+	bool AnotherDiceRoll;   // bool added to give player an extra roll for CardSeven
+
+	// Might add similar bools for bonus super attacks;
+
 	int stepCount;		   // step count which is the same as his cellNum: from 1 to NumVerticalCells*NumHorizontalCells
 	int wallet;		       // player's wallet (how many coins he has -- integer)
 	int justRolledDiceNum; // the current dice number which is just rolled by the player
@@ -32,10 +38,16 @@ public:
 	void SetTurnCount(int turnCount);		// A setter for turnCount
 	int GetTurnCount() const;		// A getter for turnCount
 
-	void SetStepCount(int);		// A setter for stepCount
-	int GetstepCount() const;		// A getter for stepCount
+	void SetStepCount(int stepCount);		// A setter for stepCount
+	int GetStepCount() const;		// A getter for stepCount
+
+	int GetDiceNum() const;
 
 	int GetPlayerNum() const;		// A getter for playerNum
+
+	void SetIsPrevented(bool IsPrevented);		// A setter for IsPrevented
+
+	void SetAnotherDiceRoll(bool AnotherDiceRoll);
 
 	///TODO: You can add setters and getters for data members here (if needed)
 	

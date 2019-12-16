@@ -4,13 +4,13 @@
 #include "Output.h"
 #include "CardOne.h"
 #include "CardTwo.h"
-//#include "CardThree.h"
-//#Include "CardFour.h"
-//#Include "CardFive.h"
-//#Include "CardSix.h"
-//#Include "CardSeven.h"
-//#Include "CardEight.h"
-//#Include "CardNine.h"
+#include "CardThree.h"
+#include "CardFour.h"
+#include "CardFive.h"
+#include "CardSix.h"
+#include "CardSeven.h"
+#include "CardEight.h"
+#include "CardNine.h"
 #include "CardTen.h"
 #include "CardEleven.h"
 #include "CardTwelve.h"
@@ -93,7 +93,6 @@ void AddCardAction::Execute()
 	case 2:
 		pCard = new CardTwo(cardPosition);
 		break;
-	/*
 	case 3:
 		pCard = new CardThree(cardPosition);
 		break;
@@ -114,7 +113,7 @@ void AddCardAction::Execute()
 		break;
 	case 9:
 		pCard = new CardNine(cardPosition);
-		break;*/
+		break;
 	case 10:
 		pCard = new CardTen(cardPosition);
 		break;

@@ -134,11 +134,18 @@
     <ClCompile Include="AddSnakeAction.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="CardEight.cpp" />
     <ClCompile Include="CardEleven.cpp" />
+    <ClCompile Include="CardFive.cpp" />
+    <ClCompile Include="CardFour.cpp" />
     <ClCompile Include="CardFourteen.cpp" />
+    <ClCompile Include="CardNine.cpp" />
     <ClCompile Include="CardOne.cpp" />
+    <ClCompile Include="CardSeven.cpp" />
+    <ClCompile Include="CardSix.cpp" />
     <ClCompile Include="CardTen.cpp" />
     <ClCompile Include="CardThirteen.cpp" />
+    <ClCompile Include="cardThree.cpp" />
     <ClCompile Include="CardTwelve.cpp" />
     <ClCompile Include="CardTwo.cpp" />
     <ClCompile Include="Cell.cpp" />
@@ -202,11 +209,18 @@
     <ClInclude Include="AddSnakeAction.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="Card.h" />
+    <ClInclude Include="CardEight.h" />
     <ClInclude Include="CardEleven.h" />
+    <ClInclude Include="CardFive.h" />
+    <ClInclude Include="CardFour.h" />
     <ClInclude Include="CardFourteen.h" />
+    <ClInclude Include="CardNine.h" />
     <ClInclude Include="CardOne.h" />
+    <ClInclude Include="CardSeven.h" />
+    <ClInclude Include="CardSix.h" />
     <ClInclude Include="CardTen.h" />
     <ClInclude Include="CardThirteen.h" />
+    <ClInclude Include="CardThree.h" />
     <ClInclude Include="CardTwelve.h" />
     <ClInclude Include="CardTwo.h" />
     <ClInclude Include="Cell.h" />
@@ -242,11 +256,15 @@
     <ClInclude Include="NewGameAction.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="RollDiceAction.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="ToDesignModeAction.h" />
     <ClInclude Include="ToPlayModeAction.h" />
     <ClInclude Include="UI_Info.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PT Project.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

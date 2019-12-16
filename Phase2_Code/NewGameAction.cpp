@@ -46,6 +46,6 @@ void NewGameAction::Execute()
 		pGrid->AdvanceCurrentPlayer();
 
 	}
-
+	pGrid->SetCurrentPlayerNumber(0);
 	pGrid->UpdateInterface();
 }

@@ -1,11 +1,14 @@
 #include "Player.h"
 
 #include "GameObject.h"
+#include "Card.h"
 
 Player::Player(Cell * pCell, int playerNum) : stepCount(0), wallet(100), playerNum(playerNum)
 {
 	this->pCell = pCell;
 	this->turnCount = 0;
+	IsPrevented = false;
+	AnotherDiceRoll = false;
 
 	// Make all the needed initialization or validations
 }
@@ -58,15 +61,31 @@ void Player::SetStepCount(int stepCount)
 	this->stepCount = stepCount;
 }
 
-int Player::GetstepCount() const
+int Player::GetStepCount() const
 {
 	return stepCount;
+}
+
+int Player::GetDiceNum() const
+{
+	return justRolledDiceNum;
 }
 
 int Player::GetPlayerNum() const
 {
 	return playerNum;
 }
+
+void Player::SetAnotherDiceRoll(bool AnotherDiceRoll)
+{
+	this->AnotherDiceRoll = AnotherDiceRoll;
+}
+
+void Player::SetIsPrevented(bool IsPrevented)
+{
+	this->IsPrevented = IsPrevented;
+}
+
 
 // ====== Drawing Functions ======
 
@@ -113,6 +132,13 @@ void Player::Move(Grid * pGrid, int diceNumber)
 
 	//turnCount reset and wallet incrementer
 	
+	if (IsPrevented)
+	{
+		IsPrevented = false;
+		return;
+	}
+
+
 	if (GetTurnCount() == 3)
 	{
 		turnCount = 0;
@@ -120,6 +146,7 @@ void Player::Move(Grid * pGrid, int diceNumber)
 		justRolledDiceNum = diceNumber;
 		return;
 	}
+
 
 	// 3- Set the justRolledDiceNum with the passed diceNumber
 
@@ -129,33 +156,40 @@ void Player::Move(Grid * pGrid, int diceNumber)
 	// 5- Use pGrid->UpdatePlayerCell() func to Update player's cell POINTER (pCell) with the cell in the passed position, "pos" (the updated one)
 	//    the importance of this function is that it Updates the pCell pointer of the player and Draws it in the new position
 
-
 	CellPosition Pos = pCell->GetCellPosition();
 
-	if (wallet != 0)
+	if (wallet > 0)
 	{
-		justRolledDiceNum = diceNumber;
-		Pos.AddCellNum(diceNumber);
-		pGrid->UpdatePlayerCell(pGrid->GetCurrentPlayer(), Pos);
-		if (pCell->GetGameObject() != NULL)
+		do
 		{
-			pCell->GetGameObject()->Apply(pGrid, this);
-		}
-	}
+			Pos = pCell->GetCellPosition();
 
-	// 6- Apply() the game object of the reached cell (if any)
+			AnotherDiceRoll = false;
 
-	// pCell GetGameObject function returns false if there exists a game object
-	// so the opposite of GetGameObject means there is a GameObject in said cell
-	// therefore we can use it in the implementation of the function 
-	// -Muhab
+			justRolledDiceNum = diceNumber;
+			Pos.AddCellNum(diceNumber);
+			pGrid->UpdatePlayerCell(pGrid->GetCurrentPlayer(), Pos);
+			if (pCell->GetGameObject() != NULL)
+			{
+				pCell->GetGameObject()->Apply(pGrid, this);
+			}
 
-	
-	// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)	
-	
-	if ( stepCount > NumHorizontalCells * NumVerticalCells)
-	{
-		pGrid->SetEndGame(true);
+			// 6- Apply() the game object of the reached cell (if any)
+
+			// pCell GetGameObject function returns false if there exists a game object
+			// so the opposite of GetGameObject means there is a GameObject in said cell
+			// therefore we can use it in the implementation of the function 
+			// -Muhab
+
+
+
+			// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)	
+
+			if (pCell->GetCellPosition().GetCellNum() >= 99)
+			{
+				pGrid->SetEndGame(true);
+			}
+		} while (AnotherDiceRoll);
 	}
 }
 
