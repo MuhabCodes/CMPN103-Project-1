@@ -3,6 +3,8 @@
 #include "Input.h"
 #include "Output.h"
 #include "Grid.h"
+#include "Ladder.h"
+#include "Snake.h"
 
 DeleteGameObjectAction::DeleteGameObjectAction(ApplicationManager* pApp) : Action(pApp) {}
 
@@ -32,6 +34,14 @@ void DeleteGameObjectAction::Execute()
 	// deletes the object if there is an object
 	if (pGrid->GetGameObject(objPos))
 	{
+		if (pGrid->HasLadder(objPos))
+		{
+			pGrid->SetEnd(pGrid->HasLadder(objPos)->GetEndPosition(), false);
+		}
+		else if (pGrid->HasSnake(objPos))
+		{
+			pGrid->SetEnd(pGrid->HasSnake(objPos)->GetEndPosition(), false);
+		}
 		pGrid->RemoveObjectFromCell(objPos);
 	}
 	else

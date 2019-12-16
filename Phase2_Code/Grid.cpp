@@ -211,6 +211,16 @@ void Grid::SetEnd(const CellPosition& position, bool B)
 	CellList[position.VCell()][position.HCell()]->SetEnd(B);
 }
 
+Ladder* Grid::HasLadder(const CellPosition& position) const
+{
+	return CellList[position.VCell()][position.HCell()]->HasLadder();
+}
+
+Snake* Grid::HasSnake(const CellPosition& position) const
+{
+	return CellList[position.VCell()][position.HCell()]->HasSnake();
+}
+
 
 // ========= User Interface Functions =========
 
