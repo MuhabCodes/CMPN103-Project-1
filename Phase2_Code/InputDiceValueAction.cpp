@@ -51,14 +51,11 @@ void InputDiceValueAction::Execute()
 	// validation to only move the user when the Input is between 
 	// 1 and 6 to immitate dice numbers
 
-	//if (DiceInput > 0 && DiceInput <= 6)
-	//{
-	//	pPlayer->Move(pGrid, DiceInput); // move user using
-	//	pGrid->AdvanceCurrentPlayer();
-	//}
-
-	pPlayer->Move(pGrid, DiceInput); // move user using
-	pGrid->AdvanceCurrentPlayer();
+	if (DiceInput > 0 && DiceInput <= 6)
+	{
+		pPlayer->Move(pGrid, DiceInput); // move user using
+		pGrid->AdvanceCurrentPlayer();
+	}
 
 }
 

@@ -39,7 +39,7 @@ public:
 	int GetTurnCount() const;		// A getter for turnCount
 
 	void SetStepCount(int stepCount);		// A setter for stepCount
-	int GetstepCount() const;		// A getter for stepCount
+	int GetStepCount() const;		// A getter for stepCount
 
 	int GetDiceNum() const;
 

@@ -61,7 +61,7 @@ void Player::SetStepCount(int stepCount)
 	this->stepCount = stepCount;
 }
 
-int Player::GetstepCount() const
+int Player::GetStepCount() const
 {
 	return stepCount;
 }
@@ -158,29 +158,6 @@ void Player::Move(Grid * pGrid, int diceNumber)
 
 	CellPosition Pos = pCell->GetCellPosition();
 
-	//if (wallet != 0)
-	//{
-	//	justRolledDiceNum = diceNumber;
-	//	Pos.AddCellNum(diceNumber);
-	//	pGrid->UpdatePlayerCell(pGrid->GetCurrentPlayer(), Pos);
-	//	if (pCell->GetGameObject() != NULL)
-	//	{
-	//		pCell->GetGameObject()->Apply(pGrid, this);
-	//	}
-	//}
-
-	//if (pCell->GetCellPosition().GetCellNum() >= 99)
-	//{
-	//	pGrid->SetEndGame(true);
-	//}
-
-	//justRolledDiceNum = diceNumber;
-	//Pos.AddCellNum(diceNumber);
-	//pGrid->UpdatePlayerCell(pGrid->GetCurrentPlayer(), Pos);
-	//if (pCell->GetGameObject() != NULL)
-	//{
-	//	pCell->GetGameObject()->Apply(pGrid, this);
-	//}
 	if (wallet > 0)
 	{
 		do
