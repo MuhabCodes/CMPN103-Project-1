@@ -47,15 +47,12 @@ void RollDiceAction::Execute()
 
 	if (!flag)
 	{
-		do
-		{
-			srand((int)time(NULL)); // time is for different seed each run
-			int diceNumber = 1 + rand() % 6; // from 1 to 6 --> should change seed
-			pOut->PrintMessage("You just rolled " + to_string(diceNumber) + " ");
-			Player* pPlayer = pGrid->GetCurrentPlayer(); // step 3 - getting current player
-			pPlayer->Move(pGrid, diceNumber); // step 4 - moving current player using Move fn
-			pGrid->AdvanceCurrentPlayer(); // step 5 - Advancing to next player
-		} while (false);
+		srand((int)time(NULL)); // time is for different seed each run
+		int diceNumber = 1 + rand() % 6; // from 1 to 6 --> should change seed
+		pOut->PrintMessage("You just rolled " + to_string(diceNumber) + " ");
+		Player* pPlayer = pGrid->GetCurrentPlayer(); // step 3 - getting current player
+		pPlayer->Move(pGrid, diceNumber); // step 4 - moving current player using Move fn
+		pGrid->AdvanceCurrentPlayer(); // step 5 - Advancing to next player
 	}
 	else
 	{
