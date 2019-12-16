@@ -164,6 +164,7 @@ Ladder * Grid::GetNextLadder(const CellPosition & position)
 		for (int j = startH; j < NumHorizontalCells; j++) // searching from startH and RIGHT
 		{
 
+
 			///TODO: Check if CellList[i][j] has a ladder, if yes return it
 			
 			if (CellList[i][j]->HasLadder() != NULL)
@@ -176,6 +177,7 @@ Ladder * Grid::GetNextLadder(const CellPosition & position)
 	}
 	return NULL; // not found
 }
+
 
 Snake* Grid::GetNextSnake(const CellPosition& position)
 {
@@ -197,6 +199,7 @@ Snake* Grid::GetNextSnake(const CellPosition& position)
 	}
 	return NULL; // not found
 }
+
 
 // ========= User Interface Functions =========
 
@@ -248,7 +251,6 @@ void Grid::UpdateInterface() const
 		// In addition, cards/snakes/ladders do NOT change positions in Play Mode, so need to draw them here too
 	}
 }
-
 
 void Grid::PrintErrorMessage(string msg)
 {

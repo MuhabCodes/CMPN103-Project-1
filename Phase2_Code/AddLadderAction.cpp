@@ -50,6 +50,20 @@ void AddLadderAction::Execute()
 	Ladder * pLadder = new Ladder(startPos, endPos);
 
 	Grid * pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
+	
+	// verify that the start cell is under the end cell
+	if (startPos.VCell() <= endPos.VCell())
+	{
+		pGrid->PrintErrorMessage("Error: The Start cell must be under the End cell ! Click to continue ...");
+		return;
+	}
+
+	// verify that the start cell and the end cell are in the same column
+	if (startPos.HCell() != endPos.HCell())
+	{
+		pGrid->PrintErrorMessage("Error: The Start Cell and the End Cell must be in the same column ! Click to continue ...");
+		return;
+	}
 
 	// Add the card object to the GameObject of its Cell:
 	bool added = pGrid->AddObjectToCell(pLadder);
