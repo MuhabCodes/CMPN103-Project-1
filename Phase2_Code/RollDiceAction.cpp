@@ -56,7 +56,8 @@ void RollDiceAction::Execute()
 	}
 	else
 	{
-		pOut->PrintMessage("Game finished! .. Click Anywhere for new game");
+		Player* pPlayer = pGrid->GetCurrentPlayer();
+		pOut->PrintMessage("Game finished, Player " + to_string(pPlayer->GetPlayerNum()) + " has WON! Click Anywhere for new game");
 		pIn->GetCellClicked();
 		pManager->ExecuteAction(ActionType (NEW_GAME));
 

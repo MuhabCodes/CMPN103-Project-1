@@ -48,15 +48,29 @@ void InputDiceValueAction::Execute()
 
 	Player* pPlayer = pGrid->GetCurrentPlayer();
 
-	// validation to only move the user when the Input is between 
-	// 1 and 6 to immitate dice numbers
 
-	if (DiceInput > 0 && DiceInput <= 6)
+
+	bool flag = pGrid->GetEndGame();
+
+	if (!flag)
 	{
-		pPlayer->Move(pGrid, DiceInput); // move user using
-		pGrid->AdvanceCurrentPlayer();
-	}
+		// validation to only move the user when the Input is between 
+		// 1 and 6 to immitate dice numbers
 
+		if (DiceInput > 0 && DiceInput <= 6)
+		{
+			pPlayer->Move(pGrid, DiceInput); // move user using
+			pGrid->AdvanceCurrentPlayer();
+		}
+	}
+	else
+	{
+		Player* pPlayer = pGrid->GetCurrentPlayer();
+		pOut->PrintMessage("Game finished, Player " + to_string(pPlayer->GetPlayerNum()) + " has WON! Click Anywhere for new game");
+		pIn->GetCellClicked();
+		pManager->ExecuteAction(ActionType(NEW_GAME));
+
+	}
 }
 
 InputDiceValueAction::~InputDiceValueAction()

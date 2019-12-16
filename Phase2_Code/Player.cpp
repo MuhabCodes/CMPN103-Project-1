@@ -168,12 +168,14 @@ void Player::Move(Grid * pGrid, int diceNumber)
 
 			justRolledDiceNum = diceNumber;
 			Pos.AddCellNum(diceNumber);
+			stepCount += diceNumber;
 			pGrid->UpdatePlayerCell(pGrid->GetCurrentPlayer(), Pos);
 			if (pCell->GetGameObject() != NULL)
 			{
 				pCell->GetGameObject()->Apply(pGrid, this);
+				stepCount = this->GetCell()->GetCellPosition().GetCellNum();
 			}
-			stepCount += diceNumber;
+			
 			// 6- Apply() the game object of the reached cell (if any)
 
 			// pCell GetGameObject function returns false if there exists a game object
@@ -185,7 +187,7 @@ void Player::Move(Grid * pGrid, int diceNumber)
 
 			// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)	
 
-			if (pCell->GetCellPosition().GetCellNum() >= 99)
+			if ( stepCount >= 99)
 			{
 				pGrid->SetEndGame(true);
 			}
