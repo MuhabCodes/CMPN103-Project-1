@@ -74,6 +74,8 @@ public:
 	Snake * GetNextSnake(const CellPosition& position);
 	bool HasEnd(const CellPosition& position) const;
 	void SetEnd(const CellPosition& position, bool B);
+	Ladder* HasLadder(const CellPosition& position) const;
+	Snake* HasSnake(const CellPosition& position) const;
 
 	// ========= User Interface Functions =========
 
