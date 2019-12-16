@@ -44,7 +44,7 @@ void AddCardAction::ReadActionParameters()
 
 	// 2- Read the "cardNumber" parameter and set its data member
 
-	pOut->PrintMessage("Enter Card Number[ 1~14 ]: .. ");
+	pOut->PrintMessage("Enter Card Number[ 1~14 ]: ... ");
 	
 	cardNumber = pIn->GetInteger(pOut);
 
@@ -56,7 +56,7 @@ void AddCardAction::ReadActionParameters()
 
 	// 3- Read the "cardPosition" parameter (its cell position) and set its data member
 	
-	pOut->PrintMessage("Click a cell to add the card to");
+	pOut->PrintMessage("Click on a cell to add the card to ...");
 
 	cardPosition = pIn->GetCellClicked();
 

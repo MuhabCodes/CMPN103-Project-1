@@ -27,6 +27,7 @@ void CardTwo::Apply(Grid* pGrid, Player* pPlayer)
 
 
 	// Apply card fn in base class Card
+	Card::Apply(pGrid, pPlayer);
 
 	// Setting the player pointer to the current player to adjust their wallet
 
@@ -37,4 +38,14 @@ void CardTwo::Apply(Grid* pGrid, Player* pPlayer)
 	pPlayer->SetWallet(pPlayer->GetWallet() + walletAmount);
 
 
+}
+
+void CardTwo::Save(ofstream& OutFile, GameObjectType Type)
+{
+	Card::Save(OutFile, Type);
+	if (Type != CARD)
+	{
+		return;
+	}
+	OutFile << ' ' << walletAmount << endl;
 }

@@ -38,6 +38,7 @@ public:
 										  // and makes any needed initializations
 
 	bool IsOverlapping(GameObject* newObj) const;
+	void SaveAll(ofstream& OutFile, GameObjectType Type);
 
 	// ========= Adding or Removing GameObjects to Cells =========
 
@@ -78,6 +79,9 @@ public:
 	void SetEnd(const CellPosition& position, bool B);
 	Ladder* HasLadder(const CellPosition& position) const;
 	Snake* HasSnake(const CellPosition& position) const;
+	int GetNumberOfLadders() const;
+	int GetNumberOfSnakes() const;
+	int GetNumberOfCards() const;
 
 	// ========= User Interface Functions =========
 

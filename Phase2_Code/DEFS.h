@@ -42,4 +42,11 @@ enum ActionType // The actions supported (add more as needed)
 	STATUS 				// Inside StatusBar Area
 };
 
+enum GameObjectType
+{
+	LADDER,
+	SNAKE,
+	CARD
+};
+
 #endif

@@ -38,12 +38,21 @@ void Card::Apply(Grid* pGrid, Player* pPlayer)
 	// As written below the "Roll Dice" action in the document ==> Check the Project Document
 	// "If a player reaches a card of any other type", the following message should be printed then wait mouse click
 
-	pGrid->PrintErrorMessage("You have reached card " + to_string(cardNumber) + ". Click to continue ...");
+	pGrid->PrintErrorMessage("You have reached card " + to_string(cardNumber) + " ! Click to continue ...");
 }
 
 bool Card::IsOverlapping(GameObject* newObj) const
 {
 	return false;
+}
+
+void Card::Save(ofstream& OutFile, GameObjectType Type)
+{
+	if (Type != CARD)
+	{
+		return;
+	}
+	OutFile << cardNumber << ' ' << position.GetCellNum();
 }
 
 Card::~Card()

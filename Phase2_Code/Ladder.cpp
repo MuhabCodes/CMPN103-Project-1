@@ -68,6 +68,15 @@ bool Ladder::IsOverlapping(GameObject* newObj) const
 	return false;
 }
 
+void Ladder::Save(ofstream& OutFile, GameObjectType Type)
+{
+	if (Type != LADDER)
+	{
+		return;
+	}
+	OutFile << position.GetCellNum() << ' ' << endCellPos.GetCellNum() << endl;
+}
+
 Ladder::~Ladder()
 {
 }

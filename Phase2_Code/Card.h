@@ -28,6 +28,8 @@ public:
 
 	virtual bool IsOverlapping(GameObject* newObj) const;
 
+	virtual void Save(ofstream& OutFile, GameObjectType Type);
+
 	virtual ~Card(); // A Virtual Destructor
 };
 

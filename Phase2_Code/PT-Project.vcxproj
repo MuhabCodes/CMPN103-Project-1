@@ -145,7 +145,7 @@
     <ClCompile Include="CardSix.cpp" />
     <ClCompile Include="CardTen.cpp" />
     <ClCompile Include="CardThirteen.cpp" />
-    <ClCompile Include="cardThree.cpp" />
+    <ClCompile Include="CardThree.cpp" />
     <ClCompile Include="CardTwelve.cpp" />
     <ClCompile Include="CardTwo.cpp" />
     <ClCompile Include="Cell.cpp" />
@@ -186,6 +186,8 @@
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant1.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant2.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jutils.c" />
+    <ClCompile Include="CopyAction.cpp" />
+    <ClCompile Include="CutAction.cpp" />
     <ClCompile Include="DeleteGameObjectAction.cpp" />
     <ClCompile Include="EditCardAction.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -193,11 +195,14 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="InputDiceValueAction.cpp" />
     <ClCompile Include="Ladder.cpp" />
+    <ClCompile Include="LoadGridAction.cpp" />
     <ClCompile Include="NewGameAction.cpp" />
     <ClCompile Include="Output.cpp" />
+    <ClCompile Include="PasteAction.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RollDiceAction.cpp" />
+    <ClCompile Include="SaveGridAction.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="ToDesignModeAction.cpp" />
     <ClCompile Include="ToPlayModeAction.cpp" />
@@ -245,6 +250,8 @@
     <ClInclude Include="CMUgraphicsLib\jpeg\jpegint.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jpeglib.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jversion.h" />
+    <ClInclude Include="CopyAction.h" />
+    <ClInclude Include="CutAction.h" />
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="DeleteGameObjectAction.h" />
     <ClInclude Include="EditCardAction.h" />
@@ -253,18 +260,17 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="InputDiceValueAction.h" />
     <ClInclude Include="Ladder.h" />
+    <ClInclude Include="LoadGridAction.h" />
     <ClInclude Include="NewGameAction.h" />
     <ClInclude Include="Output.h" />
+    <ClInclude Include="PasteAction.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="RollDiceAction.h" />
+    <ClInclude Include="SaveGridAction.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="ToDesignModeAction.h" />
     <ClInclude Include="ToPlayModeAction.h" />
     <ClInclude Include="UI_Info.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="PT Project.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

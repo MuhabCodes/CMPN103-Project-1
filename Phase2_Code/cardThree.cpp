@@ -15,18 +15,6 @@ CardThree::~CardThree()
 
 void CardThree::Apply(Grid * pGrid, Player * pPlayer)
 {
-	
-	Input* pIn = NULL;
-	pIn = pGrid->GetInput();
-
-	Output* pOut = NULL;
-	pOut = pGrid->GetOutput();
-
-	int x, y;
-
-	pOut->PrintMessage("Moves the player forward to the start of the next ladder");
-	pIn->GetCellClicked();
-	
 	Card::Apply(pGrid, pPlayer);
 
 	CellPosition cp(pPlayer->GetStepCount());
@@ -35,17 +23,22 @@ void CardThree::Apply(Grid * pGrid, Player * pPlayer)
 
 	if (nearest_ladder == NULL)
 	{
+		pGrid->PrintErrorMessage("No ladders ahead ! Click to continue ...");
 		return;
 	}
 	else
 	{
-		//pPlayer->SetStepCount(cp.GetCellNum());
 		pGrid->UpdatePlayerCell(pPlayer, nearest_ladder->GetPosition());
+		pGrid->PrintErrorMessage("Player moved to the next ladder ! Click to continue ...");
 	}
-	/*Cell c();
+}
 
-	if (pPlayer->GetCell()->HasLadder() != NULL) 
+void CardThree::Save(ofstream& OutFile, GameObjectType Type)
+{
+	Card::Save(OutFile, Type);
+	if (Type != CARD)
 	{
-		pPlayer->SetCell(&c);
-	}*/
+		return;
+	}
+	OutFile << endl;
 }

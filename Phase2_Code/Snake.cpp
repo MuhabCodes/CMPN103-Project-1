@@ -72,6 +72,15 @@ bool Snake::IsOverlapping(GameObject* newObj) const
 	return false;
 }
 
+void Snake::Save(ofstream& OutFile, GameObjectType Type)
+{
+	if (Type != SNAKE)
+	{
+		return;
+	}
+	OutFile << position.GetCellNum() << ' ' << endCellPos.GetCellNum() << endl;
+}
+
 Snake::~Snake()
 {
 	// Virtual Snake Destructor

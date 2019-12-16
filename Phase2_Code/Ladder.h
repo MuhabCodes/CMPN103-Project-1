@@ -20,6 +20,10 @@ public:
 
 	virtual bool IsOverlapping(GameObject* newObj) const;
 
+	virtual void Save(ofstream& OutFile, GameObjectType Type);
+
+	//virtual void Load(ifstream& InFile);
+
 	virtual ~Ladder(); // Virtual destructor
 };
 

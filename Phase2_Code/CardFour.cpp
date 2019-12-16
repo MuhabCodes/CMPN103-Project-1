@@ -14,17 +14,30 @@ CardFour::~CardFour()
 
 void CardFour::Apply(Grid* pGrid, Player* pPlayer)
 {
-	int x;
-	int y;
-	Input* pIn = pGrid->GetInput();
-	Output* pOut = pGrid->GetOutput();
-
 	Card::Apply(pGrid, pPlayer);
-	CellPosition CP(pPlayer->GetStepCount());
-	Snake* nearest_snake = pGrid->GetNextSnake(CP);
-	if (nearest_snake != NULL)
-		CP = nearest_snake->GetPosition();
 
-	pPlayer->SetStepCount(CP.GetCellNum());
+	CellPosition CP(pPlayer->GetStepCount());
+
+	Snake* nearest_snake = pGrid->GetNextSnake(CP);
+
+	if (nearest_snake == NULL)
+	{
+		pGrid->PrintErrorMessage("No snakes ahead ! Click to continue ...");
+		return;
+	}
+	else
+	{
+		pGrid->UpdatePlayerCell(pPlayer, nearest_snake->GetPosition());
+		pGrid->PrintErrorMessage("Player moved to the next snake ! Click to continue ...");
+	}
 }
 
+void CardFour::Save(ofstream& OutFile, GameObjectType Type)
+{
+	Card::Save(OutFile, Type);
+	if (Type != CARD)
+	{
+		return;
+	}
+	OutFile << endl;
+}

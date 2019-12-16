@@ -241,11 +241,26 @@
     <ClCompile Include="CardSeven.cpp">
       <Filter>GameObjects\Cards</Filter>
     </ClCompile>
-    <ClCompile Include="cardThree.cpp">
-      <Filter>GameObjects\Cards</Filter>
-    </ClCompile>
     <ClCompile Include="CardFour.cpp">
       <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveGridAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadGridAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="CardThree.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CopyAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="CutAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="PasteAction.cpp">
+      <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -403,7 +418,6 @@
     <ClInclude Include="CardFive.h">
       <Filter>GameObjects\Cards</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="CardSix.h">
       <Filter>GameObjects\Cards</Filter>
     </ClInclude>
@@ -422,8 +436,20 @@
     <ClInclude Include="CardFour.h">
       <Filter>GameObjects\Cards</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="PT Project.rc" />
+    <ClInclude Include="SaveGridAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadGridAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="CopyAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="CutAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="PasteAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

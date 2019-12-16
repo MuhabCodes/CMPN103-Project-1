@@ -32,7 +32,7 @@ void CardOne::ReadCardParameters(Grid * pGrid)
 	// 2- Read an Integer from the user using the Input class and set the walletAmount parameter with it
 	//    Don't forget to first print to a descriptive message to the user like:"New CardOne: Enter its wallet amount ..."
 	
-	pOut->PrintMessage("New CardOne: Enter it's wallet amount: ");
+	pOut->PrintMessage("New CardOne: Enter its wallet amount: ");
 	walletAmount = pIn->GetInteger(pOut);
 
 	// [ Note ]:
@@ -65,4 +65,14 @@ void CardOne::Apply(Grid* pGrid, Player* pPlayer)
 
 	pPlayer->SetWallet(pPlayer->GetWallet() - walletAmount);
 
+}
+
+void CardOne::Save(ofstream& OutFile, GameObjectType Type)
+{
+	Card::Save(OutFile, Type);
+	if (Type != CARD)
+	{
+		return;
+	}
+	OutFile << ' ' << walletAmount << endl;
 }

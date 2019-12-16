@@ -16,6 +16,7 @@ Input::Input(window* pW)
 void Input::GetPointClicked(int &x, int &y) const
 {
 	pWind->WaitMouseClick(x, y); // Note: x and y of WaitMouseClick are sent by reference
+	pWind->FlushKeyQueue();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////// 
@@ -38,6 +39,7 @@ string Input::GetString(Output *pO) const
 		if (pO)
 			pO->PrintMessage(Label);
 	}
+	pWind->FlushMouseQueue();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////// 
@@ -81,6 +83,7 @@ int Input::GetInteger(Output *pO) const
 			}
 		}
 	}
+	pWind->FlushMouseQueue();
 	return stoi(S); // this line should be changed with your implementation
 }
 

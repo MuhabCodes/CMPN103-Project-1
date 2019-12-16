@@ -151,6 +151,20 @@ bool Grid::IsOverlapping(GameObject* newObj) const
 	return false;
 }
 
+void Grid::SaveAll(ofstream& OutFile, GameObjectType Type)
+{
+	for (int i = 0; i < NumVerticalCells; ++i)
+	{
+		for (int j = 0; j < NumHorizontalCells; ++j)
+		{
+			if (CellList[i][j]->GetGameObject())
+			{
+				CellList[i][j]->GetGameObject()->Save(OutFile, Type);
+			}
+		}
+	}
+}
+
 GameObject* Grid::GetGameObject(const CellPosition& position) const
 {
 	return CellList[position.VCell()][position.HCell()]->GetGameObject();
@@ -221,6 +235,53 @@ Snake* Grid::HasSnake(const CellPosition& position) const
 	return CellList[position.VCell()][position.HCell()]->HasSnake();
 }
 
+int Grid::GetNumberOfLadders() const
+{
+	int N = 0;
+	for (int i = 0; i < NumVerticalCells; ++i)
+	{
+		for (int j = 0; j < NumHorizontalCells; ++j)
+		{
+			if (CellList[i][j]->HasLadder())
+			{
+				++N;
+			}
+		}
+	}
+	return N;
+}
+
+int Grid::GetNumberOfSnakes() const
+{
+	int N = 0;
+	for (int i = 0; i < NumVerticalCells; ++i)
+	{
+		for (int j = 0; j < NumHorizontalCells; ++j)
+		{
+			if (CellList[i][j]->HasSnake())
+			{
+				++N;
+			}
+		}
+	}
+	return N;
+}
+
+int Grid::GetNumberOfCards() const
+{
+	int N = 0;
+	for (int i = 0; i < NumVerticalCells; ++i)
+	{
+		for (int j = 0; j < NumHorizontalCells; ++j)
+		{
+			if (CellList[i][j]->HasCard())
+			{
+				++N;
+			}
+		}
+	}
+	return N;
+}
 
 // ========= User Interface Functions =========
 

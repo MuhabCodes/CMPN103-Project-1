@@ -11,6 +11,11 @@
 #include "DeleteGameObjectAction.h"
 #include "InputDiceValueAction.h"
 #include "NewGameAction.h"
+#include "SaveGridAction.h"
+#include "LoadGridAction.h"
+#include "CopyAction.h"
+#include "CutAction.h"
+#include "PasteAction.h"
 
 ///TODO: Add #include for all action types
 
@@ -82,6 +87,26 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 	case DELETE_GAME_OBJECT:
 		pAct = new DeleteGameObjectAction(this);
+		break;
+
+	case SAVE_GRID:
+		pAct = new SaveGridAction(this);
+		break;
+
+	case OPEN_GRID:
+		pAct = new LoadGridAction(this);
+		break;
+
+	case COPY_CARD:
+		pAct = new CopyAction(this);
+		break;
+
+	case CUT_CARD:
+		pAct = new CutAction(this);
+		break;
+
+	case PASTE_CARD:
+		pAct = new PasteAction(this);
 		break;
 
 	case EXIT:
