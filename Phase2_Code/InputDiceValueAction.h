@@ -1,7 +1,7 @@
 #pragma once
 #include "Action.h"
 
-class InputDiceValue :
+class InputDiceValueAction :
 	public Action
 {
 
@@ -9,12 +9,12 @@ class InputDiceValue :
 
 public:
 
-	InputDiceValue(ApplicationManager* pApp);
+	InputDiceValueAction(ApplicationManager* pApp);
 
 	virtual void ReadActionParameters();
 
 	virtual void Execute();
 
-	virtual ~InputDiceValue();
+	virtual ~InputDiceValueAction();
 };
 

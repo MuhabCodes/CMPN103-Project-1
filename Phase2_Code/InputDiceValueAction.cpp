@@ -1,15 +1,15 @@
-#include "InputDiceValue.h"
+#include "InputDiceValueAction.h"
 
 #include "Grid.h"
 #include "Player.h"
 
 
-InputDiceValue::InputDiceValue(ApplicationManager* pApp) : Action(pApp)
+InputDiceValueAction::InputDiceValueAction(ApplicationManager* pApp) : Action(pApp)
 {
 	// Constructor to initialize pApp pointer
 }
 
-void InputDiceValue::ReadActionParameters()
+void InputDiceValueAction::ReadActionParameters()
 {
 	// Get a grid pointer to use GetInput and GetOutput functions 
 
@@ -27,12 +27,11 @@ void InputDiceValue::ReadActionParameters()
 	pOut->PrintMessage("Input dice value: ");
 	DiceInput = pIn->GetInteger(pOut);
 
-
 	pOut->ClearStatusBar();
 
 }
 
-void InputDiceValue::Execute()
+void InputDiceValueAction::Execute()
 {
 	ReadActionParameters(); 
 	// We call ReadActionParameters() function to print message for the user
@@ -41,21 +40,29 @@ void InputDiceValue::Execute()
 	Grid* pGrid = NULL;
 	pGrid = pManager->GetGrid();
 
+	Input* pIn = NULL;
+	pIn = pGrid->GetInput();
+
+	Output* pOut = NULL;
+	pOut = pGrid->GetOutput();
+
 	Player* pPlayer = pGrid->GetCurrentPlayer();
 
 	// validation to only move the user when the Input is between 
 	// 1 and 6 to immitate dice numbers
 
-	if (DiceInput > 0 && DiceInput <= 6)
-	{
-		pPlayer->Move(pGrid, DiceInput); // move user using
-		pGrid->AdvanceCurrentPlayer();
-	}
+	//if (DiceInput > 0 && DiceInput <= 6)
+	//{
+	//	pPlayer->Move(pGrid, DiceInput); // move user using
+	//	pGrid->AdvanceCurrentPlayer();
+	//}
 
+	pPlayer->Move(pGrid, DiceInput); // move user using
+	pGrid->AdvanceCurrentPlayer();
 
 }
 
-InputDiceValue::~InputDiceValue()
+InputDiceValueAction::~InputDiceValueAction()
 {
 	// virtual destructor
 }
