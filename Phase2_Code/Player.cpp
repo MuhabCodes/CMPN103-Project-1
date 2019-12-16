@@ -7,7 +7,7 @@ Player::Player(Cell * pCell, int playerNum) : stepCount(0), wallet(100), playerN
 {
 	this->pCell = pCell;
 	this->turnCount = 0;
-
+	IsPrevented = false;
 	// Make all the needed initialization or validations
 }
 

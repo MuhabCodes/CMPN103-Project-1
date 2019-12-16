@@ -10,7 +10,7 @@
 #include "CardFive.h"
 #include "CardSix.h"
 //#include "CardSeven.h"
-//#include "CardEight.h"
+#include "CardEight.h"
 #include "CardNine.h"
 #include "CardTen.h"
 #include "CardEleven.h"
@@ -67,28 +67,27 @@ void EditCardAction::Execute()
 	case 2:
 		pCard = new CardTwo(cell);
 		break;
-		/*
-		case 3:
-			pCard = new CardThree(cell);
-			break;
-		case 4:
-			pCard = new CardFour(cell);
-			break;
-		case 5:
-			pCard = new CardFive(cell);
-			break;
-		case 6:
-			pCard = new CardSix(cell);
-			break;
-		case 7:
-			pCard = new CardSeven(cell);
-			break;
-		case 8:
-			pCard = new CardEight(cell);
-			break;
-		case 9:
-			pCard = new CardNine(cell);
-			break;*/
+	//case 3:
+	//	pCard = new CardThree(cell);
+	//	break;
+	//case 4:
+	//	pCard = new CardFour(cell);
+	//	break;
+	case 5:
+		pCard = new CardFive(cell);
+		break;
+	case 6:
+		pCard = new CardSix(cell);
+		break;
+	//case 7:
+	//	pCard = new CardSeven(cell);
+	//	break;
+	case 8:
+		pCard = new CardEight(cell);
+		break;
+	case 9:
+		pCard = new CardNine(cell);
+		break;
 	case 10:
 		pCard = new CardTen(cell);
 		break;
