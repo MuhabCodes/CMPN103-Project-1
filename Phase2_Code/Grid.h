@@ -84,7 +84,7 @@ public:
 	int GetNumberOfLadders() const;
 	int GetNumberOfSnakes() const;
 	int GetNumberOfCards() const;
-
+	Cell * GetCurrentCell(const CellPosition& position) const;
 	// ========= User Interface Functions =========
 
 	void UpdateInterface() const;		// It Updates the Grid according to the last state of the game

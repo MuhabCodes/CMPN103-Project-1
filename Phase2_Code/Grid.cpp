@@ -300,6 +300,11 @@ int Grid::GetNumberOfCards() const
 	return N;
 }
 
+Cell * Grid::GetCurrentCell(const CellPosition & position) const
+{
+	return CellList[position.VCell()][position.HCell()];
+}
+
 // ========= User Interface Functions =========
 
 

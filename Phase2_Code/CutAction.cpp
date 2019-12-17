@@ -15,17 +15,15 @@ void CutAction::ReadActionParameters()
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 	pOut->PrintMessage("Click on the source cell.");
-	CellPosition cardCellPos;
-	cardCellPos = pIn->GetCellClicked();
-	Cell cell(cardCellPos);
-	if (cell.HasCard()) {
-		Card* card = cell.HasCard();
+	CellPosition cuttedCardPosition;
+	cuttedCardPosition = pIn->GetCellClicked();
 
-		cardCellPos = card->GetPosition();
-		card->GetCardNumber();
-
-		cuttedCard = card;
-		pGrid->RemoveObjectFromCell(cardCellPos);
+	Cell* pCell = pGrid->GetCurrentCell(cuttedCardPosition);
+	Card* pCard = pCell->HasCard();
+	if (pCard != NULL) {
+		
+		cuttedCard = pCard;
+		pGrid->RemoveObjectFromCell(cuttedCardPosition);
 	}
 	else
 		return;

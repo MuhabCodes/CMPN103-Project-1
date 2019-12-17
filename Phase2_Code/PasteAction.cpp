@@ -9,28 +9,32 @@ PasteAction::PasteAction(ApplicationManager * pApp):Action(pApp)
 
 void PasteAction::ReadActionParameters()
 {
-	Grid* pGrid = pManager->GetGrid();
+	pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
+	pGrid->GetOutput()->PrintMessage("Click on the destination cell.");
 
+	CellPosition pastedCardPosition;
+	pastedCardPosition = pIn->GetCellClicked();
+
+	Cell* clickedCell = pGrid->GetCurrentCell(pastedCardPosition);
+	Card *clipboardCard = pGrid->GetClipboard();
+	clipboardCard->SetPosition(pastedCardPosition);
+	pastedCard = clipboardCard;
 	pOut->ClearStatusBar();
 }
 
 void PasteAction::Execute()
 {
-	Grid* pGrid = pManager->GetGrid();
-	Output* pOut = pGrid->GetOutput();
-	Input* pIn = pGrid->GetInput();
-
-
-	int x, y;
-	pGrid->GetOutput()->PrintMessage("Click on the destination cell.");
-	Cell clickedCell(pGrid->GetInput()->GetCellClicked());
-	Card *clipboardCard = pGrid->GetClipboard();
 	
-	bool z = pGrid->AddObjectToCell(clipboardCard);
+	ReadActionParameters();
+
+
+	
+	bool z = pGrid->AddObjectToCell(pastedCard);
 	if (!z)
 		pGrid->PrintErrorMessage("This cell has a game object!");
+	Output * pOut = pGrid->GetOutput();
 	pOut->ClearStatusBar();
 }
 

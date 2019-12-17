@@ -5,6 +5,7 @@ class CopyAction :
 {
 	
 	Card* copiedCard;
+	Grid * pGrid;
 
 public:
 	CopyAction(ApplicationManager * pApp); // 

@@ -17,6 +17,8 @@ public:
 	
 	CellPosition GetPosition() const;     // A Getter for position
 
+	void SetPosition(const CellPosition pos);
+
 	// ============ Virtual Functions ============
 
 	virtual void Draw(Output* pOut) const = 0;	 // Draws the game object in the window in his position cell 

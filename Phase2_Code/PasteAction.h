@@ -3,6 +3,8 @@
 class PasteAction :
 	public Action
 {
+	Card* pastedCard;
+	Grid * pGrid;
 public:
 	PasteAction(ApplicationManager *pApp);
 	virtual void ReadActionParameters(); 
