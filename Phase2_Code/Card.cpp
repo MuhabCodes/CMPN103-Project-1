@@ -55,6 +55,14 @@ void Card::Save(ofstream& OutFile, GameObjectType Type)
 	OutFile << cardNumber << ' ' << position.GetCellNum();
 }
 
+bool Card::Load(ifstream& InFile)
+{
+	int pos;
+	InFile >> pos;
+	position = CellPosition(pos);
+	return true;
+}
+
 Card::~Card()
 {
 }

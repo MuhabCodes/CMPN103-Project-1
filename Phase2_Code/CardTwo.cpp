@@ -54,3 +54,10 @@ void CardTwo::Save(ofstream& OutFile, GameObjectType Type)
 	}
 	OutFile << ' ' << walletAmount << endl;
 }
+
+bool CardTwo::Load(ifstream& InFile)
+{
+	Card::Load(InFile);
+	InFile >> walletAmount;
+	return true;
+}

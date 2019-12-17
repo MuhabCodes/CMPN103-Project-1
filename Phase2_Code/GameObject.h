@@ -32,7 +32,7 @@ public:
 	// Decide the parameters that you should pass to each function	
 	
 	virtual void Save(ofstream &OutFile, GameObjectType Type) = 0;	// Saves the GameObject parameters to the file
-	//virtual void Load(ifstream &Infile) = 0;	// Loads and Reads the GameObject parameters from the file
+	virtual bool Load(ifstream &Infile) = 0;	// Loads and Reads the GameObject parameters from the file
 
 	virtual bool IsOverlapping(GameObject* newObj) const = 0;
 

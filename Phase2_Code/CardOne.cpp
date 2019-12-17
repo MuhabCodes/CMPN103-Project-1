@@ -82,3 +82,10 @@ void CardOne::Save(ofstream& OutFile, GameObjectType Type)
 	}
 	OutFile << ' ' << walletAmount << endl;
 }
+
+bool CardOne::Load(ifstream& InFile)
+{
+	Card::Load(InFile);
+	InFile >> walletAmount;
+	return true;
+}

@@ -32,6 +32,7 @@ public:
 	virtual void Apply(Grid* pGrid, Player* pPlayer);                // Applies the effect of CardTen on the passed Player
 	virtual ~CardEleven();                                             // A Virtual Destructor
 	virtual void Save(ofstream& OutFile, GameObjectType Type);
+	virtual bool Load(ifstream& InFile);
 
 };
 

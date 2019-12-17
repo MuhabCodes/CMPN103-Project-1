@@ -16,6 +16,8 @@ public:
 	virtual void ReadCardParameters(Grid * pGrid);
 
 	virtual void Save(ofstream& OutFile, GameObjectType Type);
+
+	virtual bool Load(ifstream& InFile);
 	
 	~CardNine();
 };

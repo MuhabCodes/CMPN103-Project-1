@@ -81,6 +81,36 @@ void Snake::Save(ofstream& OutFile, GameObjectType Type)
 	OutFile << position.GetCellNum() << ' ' << endCellPos.GetCellNum() << endl;
 }
 
+bool Snake::Load(ifstream& InFile)
+{
+	int startCell, endCell;
+	InFile >> startCell >> endCell;
+
+	if (startCell < 1 || startCell > NumVerticalCells* NumHorizontalCells)
+	{
+		return false;
+	}
+	if (endCell < 1 || endCell > NumVerticalCells* NumHorizontalCells)
+	{
+		return false;
+	}
+
+	CellPosition startPos = CellPosition(startCell), endPos = CellPosition(endCell);
+
+	if (startPos.VCell() >= endPos.VCell())
+	{
+		return false;
+	}
+	if (startPos.HCell() != endPos.HCell())
+	{
+		return false;
+	}
+
+	position = startPos;
+	endCellPos = endPos;
+	return true;
+}
+
 Snake::~Snake()
 {
 	// Virtual Snake Destructor

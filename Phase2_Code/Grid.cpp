@@ -68,6 +68,7 @@ void Grid::RemoveObjectFromCell(const CellPosition & pos)
 	{
 		// Note: you can deallocate the object here before setting the pointer to null if it is needed
 
+		delete CellList[pos.VCell()][pos.HCell()]->GetGameObject();
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
 	}
 }
@@ -83,6 +84,17 @@ void Grid::UpdatePlayerCell(Player * player, const CellPosition & newPosition)
 
 	// Draw the player's circle on the new cell position
 	player->Draw(pOut);
+}
+
+void Grid::ClearGrid()
+{
+	for (int i = 0; i < NumVerticalCells; ++i)
+	{
+		for (int j = 0; j < NumHorizontalCells; ++j)
+		{
+			RemoveObjectFromCell(CellPosition(i, j));
+		}
+	}
 }
 
 

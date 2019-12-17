@@ -39,6 +39,15 @@ void CardNine::Save(ofstream& OutFile, GameObjectType Type)
 	OutFile << ' ' << cellpos.GetCellNum() << endl;
 }
 
+bool CardNine::Load(ifstream& InFile)
+{
+	Card::Load(InFile);
+	int cellnum;
+	InFile >> cellnum;
+	cellpos = CellPosition(cellnum);
+	return true;
+}
+
 CardNine::~CardNine()
 {
 	//  Virtual void destructor

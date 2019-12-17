@@ -55,6 +55,7 @@ void AddLadderAction::Execute()
 	if (startPos.VCell() <= endPos.VCell())
 	{
 		pGrid->PrintErrorMessage("Error: The Start cell must be under the End cell ! Click to continue ...");
+		delete pLadder;
 		return;
 	}
 
@@ -62,24 +63,28 @@ void AddLadderAction::Execute()
 	if (startPos.HCell() != endPos.HCell())
 	{
 		pGrid->PrintErrorMessage("Error: The Start Cell and the End Cell must be in the same column ! Click to continue ...");
+		delete pLadder;
 		return;
 	}
 
 	if (pGrid->GetGameObject(startPos))
 	{
 		pGrid->PrintErrorMessage("Error: The Start Cell cannot be the Start Cell of another object ! Click to continue ...");
+		delete pLadder;
 		return;
 	}
 
 	if (pGrid->HasEnd(startPos))
 	{
 		pGrid->PrintErrorMessage("Error: The Start Cell cannot be the End Cell of another object ! Click to continue ...");
+		delete pLadder;
 		return;
 	}
 
 	if (pGrid->GetGameObject(endPos))
 	{
 		pGrid->PrintErrorMessage("Error: The End Cell cannot be the Start Cell of another object ! Click to continue ...");
+		delete pLadder;
 		return;
 	}
 
@@ -95,6 +100,7 @@ void AddLadderAction::Execute()
 	{
 		// Print an appropriate message
 		pGrid->PrintErrorMessage("Error: Two ladders cannot overlap ! Click to continue ...");
+		delete pLadder;
 	}
 	// Here, the ladder is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
 

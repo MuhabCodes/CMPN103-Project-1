@@ -131,6 +131,13 @@ void CardTen::Save(ofstream& OutFile, GameObjectType Type)
 	OutFile << ' ' << price << ' ' << rent << endl;
 }
 
+bool CardTen::Load(ifstream& InFile)
+{
+	Card::Load(InFile);
+	InFile >> price >> rent;
+	return true;
+}
+
 CardTen::~CardTen()
 {
 }

@@ -18,6 +18,8 @@ public:
 
 	virtual void Save(ofstream& OutFile, GameObjectType Type);
 
+	virtual bool Load(ifstream& InFile);
+
 	virtual ~CardTwo();
 };
 

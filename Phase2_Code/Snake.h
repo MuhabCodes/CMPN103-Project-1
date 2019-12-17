@@ -30,7 +30,7 @@ public:
 
 	virtual void Save(ofstream& OutFile, GameObjectType Type);
 	
-	//virtual void Load(ifstream& InFile);
+	virtual bool Load(ifstream& InFile);
 
 	// Virtual Destructor 
 
