@@ -8,7 +8,15 @@ Player::Player(Cell * pCell, int playerNum) : stepCount(0), wallet(100), playerN
 	this->pCell = pCell;
 	this->turnCount = 0;
 	IsPrevented = false;
+	OnFire = 0;
+	IsPoisoned = 0;
 	AnotherDiceRoll = false;
+	attackCount = 0;
+	attacksDone[0] = false;
+	attacksDone[1] = false;
+	attacksDone[2] = false;
+	attacksDone[3] = false;
+	attacksDone[4] = false;
 
 	// Make all the needed initialization or validations
 }
@@ -86,7 +94,6 @@ void Player::SetIsPrevented(bool IsPrevented)
 	this->IsPrevented = IsPrevented;
 }
 
-
 // ====== Drawing Functions ======
 
 void Player::Draw(Output* pOut) const
@@ -131,6 +138,11 @@ void Player::Move(Grid * pGrid, int diceNumber)
 	turnCount++; // turnCounter incrementer
 
 	//turnCount reset and wallet incrementer
+
+	if (OnFire--)
+	{
+		SetWallet(wallet - 20);
+	}
 	
 	if (IsPrevented)
 	{
@@ -138,10 +150,145 @@ void Player::Move(Grid * pGrid, int diceNumber)
 		return;
 	}
 
+	if (IsPoisoned--)
+	{
+		--diceNumber;
+	}
 
 	if (GetTurnCount() == 3)
 	{
 		turnCount = 0;
+		if (attackCount < 2)
+		{
+			Input* pIn = pGrid->GetInput();
+			Output* pOut = pGrid->GetOutput();
+			pOut->PrintMessage("Do you wish to launch a special attack instead of recharging? [Y/N]");
+			string response = pIn->GetString(pOut);
+			while ((response.length() != 1) || (response != "n" && response != "N" && response != "y" && response != "Y"))
+			{
+				pOut->PrintMessage("Error: Invalid response ! Please enter 'Y' or 'N' :");
+				response = pIn->GetString(pOut);
+			}
+			if (response == "n" || response == "N")
+			{
+				SetWallet(GetWallet() + diceNumber * 10);
+				justRolledDiceNum = diceNumber;
+				pOut->ClearStatusBar();
+				return;
+			}
+			else
+			{
+				++attackCount;
+				pOut->PrintMessage("Enter '1' for Ice, '2' for Fire, '3' for Poison, or '4' for Lightning: ");
+				int attack = pIn->GetInteger(pOut);
+				while (true)
+				{
+					if (attack < 1 || attack > 4)
+					{
+						pOut->PrintMessage("Error: Invalid response ! Please enter '1' for Ice, '2' for Fire, '3' for Poison, or '4' for Lightning:");
+						attack = pIn->GetInteger(pOut);
+						continue;
+					}
+					if (attacksDone[attack])
+					{
+						pOut->PrintMessage("You already used this attack ! Please choose another attack:");
+						attack = pIn->GetInteger(pOut);
+						continue;
+					}
+					break;
+				}
+				int P;
+				switch (attack)
+				{
+				case 1:
+					pOut->PrintMessage("Choose a player to prevent from rolling the next turn:");
+					P = pIn->GetInteger(pOut);
+					while (true)
+					{
+						if (P < 0 || P >= MaxPlayerCount)
+						{
+							pOut->PrintMessage("Error: Invalid choice ! Please choose a player to prevent from rolling the next turn:");
+							P = pIn->GetInteger(pOut);
+							continue;
+						}
+						if (P == playerNum)
+						{
+							pOut->PrintMessage("You can't choose yourself ! Please choose another a player to prevent from rolling the next turn:");
+							P = pIn->GetInteger(pOut);
+							continue;
+						}
+						if (pGrid->GetPlayer(P)->IsPrevented)
+						{
+							pOut->PrintMessage("This player is already prevented from rolling the next turn ! Please choose another player:");
+							P = pIn->GetInteger(pOut);
+							continue;
+						}
+						break;
+					}
+					pGrid->GetPlayer(P)->SetIsPrevented(true);
+					attacksDone[attack] = true;
+					break;
+				case 2:
+					pOut->PrintMessage("Choose a player to set on fire:");
+					P = pIn->GetInteger(pOut);
+					while (true)
+					{
+						if (P < 0 || P >= MaxPlayerCount)
+						{
+							pOut->PrintMessage("Error: Invalid choice ! Please choose a player to set on fire:");
+							P = pIn->GetInteger(pOut);
+							continue;
+						}
+						if (P == playerNum)
+						{
+							pOut->PrintMessage("You can't choose yourself ! Please choose another player to set on fire:");
+							P = pIn->GetInteger(pOut);
+							continue;
+						}
+						break;
+					}
+					pGrid->GetPlayer(P)->OnFire = 3;
+					attacksDone[attack] = true;
+					break;
+				case 3:
+					pOut->PrintMessage("Choose a player to poison:");
+					P = pIn->GetInteger(pOut);
+					while (true)
+					{
+						if (P < 0 || P >= MaxPlayerCount)
+						{
+							pOut->PrintMessage("Error: Invalid choice ! Please choose a player to poison:");
+							P = pIn->GetInteger(pOut);
+							continue;
+						}
+						if (P == playerNum)
+						{
+							pOut->PrintMessage("You can't choose yourself ! Please choose another player to poison:");
+							P = pIn->GetInteger(pOut);
+							continue;
+						}
+						break;
+					}
+					pGrid->GetPlayer(P)->IsPoisoned = 5;
+					attacksDone[attack] = true;
+					break;
+				case 4:
+					for (int i = 0; i < MaxPlayerCount; ++i)
+					{
+						if (i != playerNum)
+						{
+							Player* pP = pGrid->GetPlayer(i);
+							pP->SetWallet(pP->wallet - 20);
+						}
+					}
+					attacksDone[attack] = true;
+					break;
+				default:
+					break;
+				}
+				pGrid->PrintErrorMessage("Special attack applied ! Click to continue ...");
+			}
+		}
 		SetWallet(GetWallet() + diceNumber * 10);
 		justRolledDiceNum = diceNumber;
 		return;

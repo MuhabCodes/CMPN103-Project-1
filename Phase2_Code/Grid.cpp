@@ -150,6 +150,11 @@ Player * Grid::GetCurrentPlayer() const
 	return PlayerList[currPlayerNumber];
 }
 
+Player* Grid::GetPlayer(int playerNum) const
+{
+	return PlayerList[playerNum];
+}
+
 bool Grid::IsOverlapping(GameObject* newObj) const
 {
 	for (int i = 0; i < NumVerticalCells; i++)
